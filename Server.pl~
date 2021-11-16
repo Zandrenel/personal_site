@@ -1,0 +1,50 @@
+:- use_module(library(http/thread_httpd)).
+:- use_module(library(http/http_dispatch)).
+:- use_module(library(http/html_write)).
+
+:- op(900, fy, handle_request_gallery).
+
+% URL handlers
+:- http_handler('/', handle_request, []).
+:- http_handler('/gallery', handle_request_gallery, []).
+
+handle_request(_Request) :-
+    reply_html_page(
+	[title('Hello_World!')],
+	[h1('Hello!!'),
+	div([div([li('Tiddles'),li('Fluff'),li('Rumple')]),div([li('Tiddles'),li('Fluff'),li('Rumple')])])]
+    ).
+
+handle_request_gallery(_Request) :-
+    directory_files('/home/alek/Pictures/Tiddles/',F01),
+    delete(F01,'.',F02),
+    delete(F02,'..',F0),
+    format_imgs(F0,F),
+    directory_files('./',Current),
+    reply_html_page(
+	[title('Gallery')],
+	[h1('===--Tiddles--==='),
+	 p(Current),
+	 div(F),
+	 img(src('/home/alek/Code/Prolog/swi-site/static/gallery/playfish.jpg')),
+	 img(src('/home/alek/Code/Prolog/swi-site/static/gallery/playfish.jpg')),
+	 img(src('/home/alek/Code/Prolog/swi-site/static/playfish.jpg')),
+	 img(src('playfish.jpg')),
+	 img(src('static/gallery/playfish.jpg')),
+	 img([src='static/gallery/playfish.jpg'])]
+    ).
+
+
+
+format_imgs([],[]).
+format_imgs([H1|T1],[H2|T2]):-
+    atomic_list_concat(['./static/gallery/',H1],P),
+    H2 = img(src(P)),
+    format_imgs(T1,T2).
+    
+    
+
+server(Port) :-
+    http_server(http_dispatch, [port(Port)]).
+
+:- initialization(server(3030)).
