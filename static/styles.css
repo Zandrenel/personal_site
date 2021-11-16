@@ -6,10 +6,10 @@
     overflow: hidden;
     width: 100%;
 }
-li .navitem {
+li .topnav  {
     display:inline;
 }
-a .topnav {
+a  {
     float: left;
     display: block;
     color: #000;
@@ -19,7 +19,7 @@ a .topnav {
 
 
 /* Change the link color on hover */
-li a:hover .{
+li a:hover {
   background-color: #555;
   color: white;
 }
