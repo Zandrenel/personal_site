@@ -68,6 +68,7 @@ home_page(_Request) :-
 	[title('Hello_World!')],
 	[
 	    \html_requires(static('styles.css')),
+	    div(id(header),_),
 	    \nav_bar,
 	    h1('Hello!!'),
 	    div([
@@ -89,7 +90,7 @@ gallery(_Request) :-
     http_absolute_location(images('playfish.jpg'),Img,[]),
     reply_html_page(
 	[title('Gallery')],
-	[h1('===--Tiddles--==='),
+	[div(id(header),h1('===--Tiddles--===')),
 	 \html_requires(static('styles.css')),
 	 \nav_bar,
 	 p(Current)
@@ -110,7 +111,7 @@ gallery(_Request) :-
 page_test(_Request) :-
     reply_html_page([title(test)],
 		    [
-			h1('Test 123'),
+			div(id(header),h1('Test 123')),
 			\html_requires(static('styles.css')),
 			\nav_bar,
 			p('this is a little test')
@@ -119,7 +120,7 @@ page_test(_Request) :-
 about_me(_Request) :-
     reply_html_page([title(test)],
 		    [
-			h1('Alexander De Laurentiis'),
+			div(id(header),h1('Alexander De Laurentiis')),
 			\html_requires(static('styles.css')),
 			\nav_bar,
 			p('Hello! Welcome to my about me section, I hope there is something interesting and useful for people to learn! May ye enjoy!'),

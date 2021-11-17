@@ -1,3 +1,11 @@
+#header {
+    background-image:url("gallery/eats.jpg");
+    background-size:10%;
+    height:200px;
+    justify-content:center;
+    
+}
+
 #navigationbar {
     background-color: #777;
     list-style-type: none;
