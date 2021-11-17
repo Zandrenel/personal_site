@@ -6,22 +6,27 @@
 :- use_module(library(http/html_head)).
 :- use_module(library(http/http_path)).
 
-
+:- multifile user:file_search_path/2.
 :- multifile http:location/3.
+
+:- dynamic user:file_search_path/2.
 :- dynamic   http:location/3.
 
 
+:- prolog_load_context(directory, Dir),
+   (   user:file_search_path(swi_site, Dir)
+   ->  true
+   ;   asserta(user:file_search_path(swi_site, Dir))
+   ).
 
-user:file_search_path(images, root(static)).
-file_search_path('*', '/home/alek/Code/swi-site/static/gallery').
+
 
 http:location(static, '/s', []).
 http:location(files, '/f', []).
-http:location(gallery, '/g', []).
-http:location(images, root('static/gallery'), []).
-%user:file_search_path(gallery, '/home/alek/Code/Prolog/swi-site/static/gallery').
-
-%:- http_handler(images(.), serve_files_in_directory(gallery), [prefix]).
+http:location(gallery, gallery, []).
+user:file_search_path(root, root(.)).
+user:file_search_path(gallery, document_root(swi_site)).
+user:file_search_path(document_root, swi_site(www)).
 
 
 serve_files(Request) :-
@@ -39,14 +44,11 @@ get_static(Request) :-
 	  http_404([], Request).
 
 
-serve_gallery(Request) :-
-    http_reply_from_files('static/gallery', [], Request).
-serve_gallery(Request) :-
-    http_reply_from_files('/g', [], Request).
-serve_gallery(Request) :-
-	  http_404([], Request).
 
-
+:- setting(http:served_file_extensions,
+	   list(atom),
+	   [ html, gif, png, jpeg, jpg, css, js, tgz, exe, c, zip ],
+	   'List of extensions that are served as plain files').
 
 % Resource Files
 :- html_resource(static('styles.css'), []).
@@ -54,11 +56,10 @@ serve_gallery(Request) :-
 
 % URL handlers
 :- http_handler(root(.), home_page, []).
-:- http_handler(root(gallery), gallery, []).
+:- http_handler(root(gallery_all), gallery, []).
 :- http_handler(root(test), page_test, []).
 :- http_handler(files(.), serve_files, [prefix]).
 :- http_handler(static(.), get_static, [prefix]).
-:- http_handler(gallery(.), serve_gallery, [prefix]).
 :- http_handler(root(about), about_me, [prefix]).
 
 
@@ -71,39 +72,33 @@ home_page(_Request) :-
 	    div(id(header),_),
 	    \nav_bar,
 	    h1('Hello!!'),
-	    div([
-		       div([li('Tiddles'),
-			    li('Fluff'),
-			    li('Rumple')]),
-		       div([li('Tiddles'),
-			    li('Fluff'),
-			    li('Rumple')])]
-	       )]
-    ).
+	    div(id(main),
+		[
+		    p('Welcome to my website! this is the start of a future feature which professional looking hub!'),
+		    img([alt('Tiddles Sleeping'),
+			 src('gallery/sleepball.jpg')]),
+		    img([alt('Tiddles fish'),
+			 src('playfish.jpg')]),
+		    div([style='justify-content: center;'],
+			[p('This is a picture of Tiddles Supposedly')]
+		       ) 
+		])
+	]).
+
 
 gallery(_Request) :-
     directory_files('/home/alek/Pictures/Tiddles/',F01),
     delete(F01,'.',F02),
     delete(F02,'..',F0),
     format_imgs(F0,F),
-    directory_files('./',Current),
-    http_absolute_location(images('playfish.jpg'),Img,[]),
+    http_absolute_location(gallery('playfish.jpg'),Img,[]),
     reply_html_page(
 	[title('Gallery')],
 	[div(id(header),h1('===--Tiddles--===')),
 	 \html_requires(static('styles.css')),
 	 \nav_bar,
-	 p(Current)
 	 div(F),
 	 img(src(Img)),
-	 img(src('/home/alek/Code/Prolog/swi-site/static/gallery/playfish.jpg')),
-	 img(src='/home/alek/Code/Prolog/swi-site/static/gallery/playfish.jpg'),
-	 img(src('/home/alek/Code/Prolog/swi-site/static/playfish.jpg')),
-	 img(src('/home/alek/Code/Prolog/swi-site/playfish.jpg')),
-	 img(src('playfish.jpg')),
-    	 img(src='images/playfish.jpg'),
-	 img([src='static/gallery/playfish.jpg']),
-	 img([src='images/playfish.png']),
 	 div(id('imagetest'),_)]
     ).
 
@@ -114,7 +109,14 @@ page_test(_Request) :-
 			div(id(header),h1('Test 123')),
 			\html_requires(static('styles.css')),
 			\nav_bar,
-			p('this is a little test')
+			div(id(doc_body),[
+			    %div(id(leftcolumn),_),
+			    div(id(main),
+				    p('This page as it stands is currently empty but honestly thats ok for now. For now this page may be used when testing features, or whatnot. Maybe for just adding randome blurbs of text, I may even figure out how to host various personal projects that are running and queriable from this page on this page. But as it stands this page is a simple test. A test of time for how long I keep it here and a test as in itself for how can I break it next and make it better.')
+				   
+				   )  
+			    %div(id(rightcolumn),_)
+			   ])
 		    ]).
 
 about_me(_Request) :-
@@ -140,7 +142,7 @@ about_me(_Request) :-
 
 format_imgs([],[]).
 format_imgs([H1|T1],[H2|T2]):-
-    atomic_list_concat(['static/gallery/',H1],P),
+    http_absolute_location(gallery(H1), P, []),
     H2 = div(class(gallery_image),img([src(P),alt=H1])),
     format_imgs(T1,T2).
 
@@ -164,7 +166,7 @@ as_top_nav(Name, li(class(navitem),a([href=HREF, class=topnav], Name))) :-
 
 
 nav(home, '/').
-nav(gallery, '/gallery').
+nav(gallery, '/gallery_all').
 nav(test, '/test').
 nav(files, '/f').
 nav(about, '/about').

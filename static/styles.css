@@ -48,3 +48,34 @@ li a:hover {
 	    
     
 }
+
+#doc_body {
+    justify-content: center;
+    background-color: #aabbbb;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+#leftcolumn {
+    background-color: #775577;
+    width:10%;
+    float:left;
+    height:500px;
+    padding:0;
+}
+#rightcolumn {
+    background-color: #775577;
+    width:10%;
+    float:left;
+    height:500px;
+    opadding:0;
+}
+
+#main {
+    justify-content: center;
+    width:70%;
+    float:left;
+    padding:5%;
+    background-color: #eeeeee;
+}
