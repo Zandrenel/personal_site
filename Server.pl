@@ -5,6 +5,8 @@
 :- use_module(library(http/html_write)).
 :- use_module(library(http/html_head)).
 :- use_module(library(http/http_path)).
+:- use_module(library(settings)).
+
 
 :- multifile user:file_search_path/2.
 :- multifile http:location/3.
@@ -74,7 +76,6 @@ home_page(_Request) :-
 	[title('Hello_World!')],
 	[
 	    \html_requires(static('styles.css')),
-	    div(id(header),_),
 	    \nav_bar,
 	    h1('Hello!!'),
 	    div(id(main),
@@ -88,15 +89,15 @@ home_page(_Request) :-
 
 
 gallery(_Request) :-
-    directory_files('/home/alek/Pictures/Tiddles/',F01),
+    directory_files('./static/gallery',F01),
     delete(F01,'.',F02),
     delete(F02,'..',F0),
     format_imgs(F0,F),
     reply_html_page(
 	[title('Gallery')],
-	[div(id(header),h1('===--Tiddles--===')),
-	 \html_requires(static('styles.css')),
+	[\html_requires(static('styles.css')),
 	 \nav_bar,
+	 h1([style='text-align:center;'],['===--Tiddles--===']),
 	 div(id(display),F)]
     ).
 
@@ -104,9 +105,9 @@ gallery(_Request) :-
 page_test(_Request) :-
     reply_html_page([title(test)],
 		    [
-			div(id(header),h1('Test 123')),
 			\html_requires(static('styles.css')),
 			\nav_bar,
+			h1('Test 123')
 			div(id(doc_body),[
 			    %div(id(leftcolumn),_),
 			    div(id(main),
@@ -120,7 +121,6 @@ page_test(_Request) :-
 about_me(_Request) :-
     reply_html_page([title(test)],
 		    [
-			div(id(header),h1('Alexander De Laurentiis')),
 			\html_requires(static('styles.css')),
 			\nav_bar,
 			p('Hello! Welcome to my about me section, I hope there is something interesting and useful for people to learn! May ye enjoy!'),
