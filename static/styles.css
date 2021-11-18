@@ -1,5 +1,5 @@
 #header {
-    background-image:url("gallery/eats.jpg");
+    background-image:url("imgs/eats.jpg");
     background-size:10%;
     height:200px;
     justify-content:center;
@@ -40,7 +40,7 @@ li a:hover {
 }
 
 #imagetest {
-    background-image: url("gallery/playfish.jpg");
+    background-image: url("imgs/playfish.jpg");
     background-size: 100%;
     background-position: center;
     height: 400px;
@@ -78,4 +78,15 @@ li a:hover {
     float:left;
     padding:5%;
     background-color: #eeeeee;
+}
+
+.gallery_image {
+    width: 200px;
+    float:left;
+    padding:20px;
+}
+
+#display {
+    width:100%;
+    height:100%;
 }

@@ -13,20 +13,23 @@
 :- dynamic   http:location/3.
 
 
+% FILE SEARCH PATHS
+
 :- prolog_load_context(directory, Dir),
    (   user:file_search_path(swi_site, Dir)
    ->  true
    ;   asserta(user:file_search_path(swi_site, Dir))
    ).
 
+user:file_search_path(gallery_images, swi_site(gallery_images)).
 
 
 http:location(static, '/s', []).
 http:location(files, '/f', []).
-http:location(gallery, gallery, []).
-user:file_search_path(root, root(.)).
-user:file_search_path(gallery, document_root(swi_site)).
-user:file_search_path(document_root, swi_site(www)).
+http:location(gallery_images, static('gallery'), []).
+http:location(images, static('imgs'), []).
+
+
 
 
 serve_files(Request) :-
@@ -53,10 +56,12 @@ get_static(Request) :-
 % Resource Files
 :- html_resource(static('styles.css'), []).
 
+:- html_resource(swi_site,
+		 [ virtual(true)]).
 
-% URL handlers
+  % URL handlers
 :- http_handler(root(.), home_page, []).
-:- http_handler(root(gallery_all), gallery, []).
+:- http_handler(root(gallery), gallery, []).
 :- http_handler(root(test), page_test, []).
 :- http_handler(files(.), serve_files, [prefix]).
 :- http_handler(static(.), get_static, [prefix]).
@@ -75,10 +80,6 @@ home_page(_Request) :-
 	    div(id(main),
 		[
 		    p('Welcome to my website! this is the start of a future feature which professional looking hub!'),
-		    img([alt('Tiddles Sleeping'),
-			 src('gallery/sleepball.jpg')]),
-		    img([alt('Tiddles fish'),
-			 src('playfish.jpg')]),
 		    div([style='justify-content: center;'],
 			[p('This is a picture of Tiddles Supposedly')]
 		       ) 
@@ -91,15 +92,12 @@ gallery(_Request) :-
     delete(F01,'.',F02),
     delete(F02,'..',F0),
     format_imgs(F0,F),
-    http_absolute_location(gallery('playfish.jpg'),Img,[]),
     reply_html_page(
 	[title('Gallery')],
 	[div(id(header),h1('===--Tiddles--===')),
 	 \html_requires(static('styles.css')),
 	 \nav_bar,
-	 div(F),
-	 img(src(Img)),
-	 div(id('imagetest'),_)]
+	 div(id(display),F)]
     ).
 
 
@@ -142,8 +140,8 @@ about_me(_Request) :-
 
 format_imgs([],[]).
 format_imgs([H1|T1],[H2|T2]):-
-    http_absolute_location(gallery(H1), P, []),
-    H2 = div(class(gallery_image),img([src(P),alt=H1])),
+    http_absolute_location(gallery_images(H1), P, []),
+    H2 = div(img([class(gallery_image),src(P),alt=H1])),
     format_imgs(T1,T2).
 
 % --------- To list function ---------
@@ -166,7 +164,7 @@ as_top_nav(Name, li(class(navitem),a([href=HREF, class=topnav], Name))) :-
 
 
 nav(home, '/').
-nav(gallery, '/gallery_all').
+nav(gallery, '/gallery').
 nav(test, '/test').
 nav(files, '/f').
 nav(about, '/about').
