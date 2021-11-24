@@ -11,6 +11,7 @@
 :- use_module(gallery_page).
 :- use_module(home).
 :- use_module(projects).
+:- use_module(showcases/search_engine).
 
 :- multifile user:file_search_path/2.
 :- multifile http:location/3.
@@ -28,6 +29,7 @@
    ).
 
 user:file_search_path(gallery_images, swi_site(gallery_images)).
+
 
 
 http:location(static, '/s', []).
@@ -71,13 +73,7 @@ get_static(Request) :-
 :- http_handler(root(projects), projects, []).
 :- http_handler(files(.), serve_files, [prefix]).
 :- http_handler(static(.), get_static, [prefix]).
-:- http_handler(root(about), about_me, [prefix]).
 
-
-
-
-
-% --------- To list function ---------
 
 
 

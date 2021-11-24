@@ -1,9 +1,5 @@
 :- module(gallery_page,[gallery/1]).
 
-
-
-
-
 gallery(_Request) :-
     reply_html_page(
 	[title('Gallery')],
@@ -13,6 +9,7 @@ gallery(_Request) :-
 	 \display_gallery,
 	\footer]
     ).
+
 
 
 % Helper methods for the gallery

@@ -15,8 +15,22 @@ nav_bar -->
 	  )]).
 
 
+
+
+format_sub_nav([],[]).
+format_sub_nav([H1|T1],[H2|T2]):-
+    H1 = sub_nav(_,Name,Path),
+    H2 = a([href=Path, class=subnav], Name),
+    format_sub_nav(T1,T2).
+
+as_top_nav(Parent, li(class(navitem),[a([href=HREF,class(topnav)],Parent),div(class(dropdown),Submenu)])) :-
+    sub_nav(Parent,_,_),
+    findall(sub_nav(Parent,Name,Path), sub_nav(_,Name,Path),Sublinks),
+    format_sub_nav(Sublinks, Submenu),
+    nav(Parent,HREF).
 as_top_nav(Name, li(class(navitem),a([href=HREF, class=topnav], Name))) :-
 	nav(Name, HREF).
+
 
 % nav(Name, Path).
 nav('Home', '/').
@@ -24,6 +38,8 @@ nav('Gallery', '/gallery').
 nav('Projects', '/projects').
 nav('Files', '/f').
 
+% sub_nav(Parent, Name, Path).
+sub_nav('Projects','Search Engine','/projects/engine').
 
 % -- Footer -- %
 
@@ -36,10 +52,23 @@ footer -->
 	maplist(footer_link, LinkNames, FooterLinks)
     },
     html([div(id(footer),
-	      div(id(footerlinks),
-		  FooterLinks)
-	     )
-	    ]).
+	      [
+		  div(id(footerlinks),
+		      FooterLinks),
+		  \monero
+	     ])
+	 ]).
+
+
+monero -->
+    html(div([id(monero),style('width:230px; float:left;')],
+	     [
+		 div([id(maddress),style('word-wrap:break-word;')],[
+			 'Monero Address',
+			 p('42PeQtRVHtAcTd55znMDCU82yiahjtbmLMSwtYhA6YqQQoVQUd6wi9ARem6rW6oASWBBTzPej7n7sUZPpj9S9XKmHWHCp2x')]
+		    )]
+	    )
+	).
 
     
     

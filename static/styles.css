@@ -9,7 +9,7 @@
 }
 
 body {
-    color: #999999;
+    color: #555555;
     background-color: #222222;
 }
 
@@ -27,6 +27,12 @@ body {
     color: #d1d1d1;
     text-align: center;
 }
+
+#monero {
+    margin:10px;
+    
+}
+
 /* Navigation Bar styling */
 /* The div that holds the navigation bar */
 #top_nav_bar {
@@ -48,11 +54,11 @@ body {
     width: 100%;
     
 }
-/*  */
+/* Each list item in the topnav and the link */
 li .topnav  {
     display:inline;
 }
-/* */
+/* every top level link in the topnav */
 a  {
     float: left;
     display: block;
@@ -66,6 +72,26 @@ li a:hover {
   background-color: #555;
   color: white;
 }
+
+
+.dropdown {
+    float: none;
+    display: none;
+    position: absolute;
+    list-style-type: none;
+    z-index:1;
+}
+
+.subnav {
+    position: relative;
+    margin:0;
+}
+
+
+ul a:hover  > div .dropdown  {
+    display: inline-block;
+}
+
 
 /* Text bodies that will apply to base level pages */
 
