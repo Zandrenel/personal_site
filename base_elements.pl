@@ -20,16 +20,20 @@ nav_bar -->
 format_sub_nav([],[]).
 format_sub_nav([H1|T1],[H2|T2]):-
     H1 = sub_nav(_,Name,Path),
-    H2 = a([href=Path, class=subnav], Name),
+    H2 = li(class('navitem'),a([href=Path, class=subnav], Name)),
     format_sub_nav(T1,T2).
 
-as_top_nav(Parent, li(class(navitem),[a([href=HREF,class(topnav)],Parent),div(class(dropdown),Submenu)])) :-
+as_top_nav(Parent, li(class(navitem),
+		      [div(class(dropdown),
+			   [a([href=HREF,class(topnav)],Parent),
+			    ul(class('dropdown-content'),Submenu)])
+		      ])):-
     sub_nav(Parent,_,_),
     findall(sub_nav(Parent,Name,Path), sub_nav(_,Name,Path),Sublinks),
     format_sub_nav(Sublinks, Submenu),
     nav(Parent,HREF).
 as_top_nav(Name, li(class(navitem),a([href=HREF, class=topnav], Name))) :-
-	nav(Name, HREF).
+    nav(Name, HREF).
 
 
 % nav(Name, Path).
@@ -54,8 +58,7 @@ footer -->
     html([div(id(footer),
 	      [
 		  div(id(footerlinks),
-		      FooterLinks),
-		  \monero
+		      FooterLinks)
 	     ])
 	 ]).
 
@@ -65,7 +68,7 @@ monero -->
 	     [
 		 div([id(maddress),style('word-wrap:break-word;')],[
 			 'Monero Address',
-			 p('42PeQtRVHtAcTd55znMDCU82yiahjtbmLMSwtYhA6YqQQoVQUd6wi9ARem6rW6oASWBBTzPej7n7sUZPpj9S9XKmHWHCp2x')]
+			 p('849HeaaqkopX8qrqsn3fyXba938JQ5MdvPAXEpXUmHBBBCY54zZDvhSYDCHf4rDvex6i7KwSQ8TGThUvfv1pYeMqCy6DW9p')]
 		    )]
 	    )
 	).

@@ -54,10 +54,12 @@ body {
     width: 100%;
     
 }
+
 /* Each list item in the topnav and the link */
 li .topnav  {
     display:inline;
 }
+
 /* every top level link in the topnav */
 a  {
     float: left;
@@ -67,31 +69,49 @@ a  {
     text-decoration: none;
 }
 
-
 li a:hover {
   background-color: #555;
   color: white;
 }
 
-
+/* Dropdown Content (Hidden by Default) */
 .dropdown {
-    float: none;
+    position: relative;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+
+}
+
+
+.dropdown-content {
+    top:50px;
+    left:10px
+    margin-top:0px;
     display: none;
     position: absolute;
-    list-style-type: none;
-    z-index:1;
-}
+    background-color: #555;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 
-.subnav {
-    position: relative;
-    margin:0;
 }
 
 
-ul a:hover  > div .dropdown  {
-    display: inline-block;
+.dropdown-content a {
+    position: fixed;
+    color: #ddd;
+    text-align: left;
+    overflow: hidden;
+    
 }
 
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+
+.dropdown:hover  .dropdown-content {
+  display: inline-block;
+}
 
 /* Text bodies that will apply to base level pages */
 
@@ -124,6 +144,8 @@ ul a:hover  > div .dropdown  {
     float:left;
     padding:5%;
     background-color: #eeeeee;
+    opacity:.7;
+    z-index:-1;
 }
 
 /* Gallery page specific styling */
