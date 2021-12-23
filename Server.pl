@@ -12,6 +12,8 @@
 :- use_module(home).
 :- use_module(projects).
 :- use_module(showcases/search_engine).
+:- use_module(showcases/image_denoiser).
+
 
 :- multifile user:file_search_path/2.
 :- multifile http:location/3.
