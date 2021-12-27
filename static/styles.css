@@ -28,6 +28,14 @@ body {
     text-align: center;
 }
 
+#footer a {
+    display:inline-block;
+    padding:16px;
+    text-decoration:none;
+    color:#d1d1d1;
+	  
+}
+
 #monero {
     margin:10px;
     
@@ -72,7 +80,7 @@ body {
     border:none;
 }
 
-div a:hover {
+#navigationbar a:hover {
   background-color: #555;
   color: white;
 }
@@ -86,7 +94,7 @@ div a:hover {
 
 
 .dropdown-content {
-    top:65px;
+    top:55px;
     display: none;
     position: fixed;
     background-color: #555;
@@ -147,7 +155,7 @@ div a:hover {
 
 #main {
     justify-content: center;
-    width:100%;
+    width:90%;
     float:left;
     padding:5%;
     background-color: #eeeeee;
@@ -159,10 +167,10 @@ div a:hover {
  
 .gallery_image {
     width: 200px;
-    height: 266;
+    height: 266px;
     float:left;
     border-radius:8px;
-    margin:20px;
+    margin:2%;
 }
 .gallery_image:hover {
     width: 200px;
@@ -181,4 +189,22 @@ div a:hover {
     background-position: center;
     width: 100%;
     height: 100%;
+}
+
+
+/* Engine page specific styling */
+
+.result {
+    display:inline-block;
+    padding:16px;
+    margin:6px;
+    text-decoration:none;
+    background-color:#aaa;
+    color:#000;
+    width:70%;
+}
+
+.result:hover {
+    background-color:#888;
+    color:#222;
 }

@@ -5,7 +5,7 @@ gallery(_Request) :-
 	[title('Gallery')],
 	[\html_requires(static('styles.css')),
 	 \nav_bar,
-	 h1([style='text-align:center;'],['===--Gallery of Tiddles--===']),
+	 h1([style='text-align:center;'],['Gallery of Tiddles']),
 	 \display_gallery,
 	\footer]
     ).
