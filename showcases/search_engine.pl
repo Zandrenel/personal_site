@@ -18,8 +18,9 @@ engine(Request) :-
     member(method(post), Request),!,
     http_read_data(Request, [query=Q|_], []),
     process_query(Q,R0),
-    format_results(R0,R1),
-    delete(R1,'',R),
+    R0 = [Total|R1],
+    format_results(R1,R2),
+    delete(R2,'',R),
     reply_html_page(
 	[title('search engine')],
 	[
@@ -29,6 +30,7 @@ engine(Request) :-
 		[
 		    \description,
 		    \query_form,
+		    div(['Total Results: ',Total]),
 		    div(R)
 		]),
 	    \footer   
@@ -84,17 +86,18 @@ process_query(Query,Results) :-
     ).
 
 setup_q(Query,Out) :-
-    cd('showcases/engineP/static/'),
+
     process_create(path(python),
 		   [
-		       'cli_querier.py',
+		       'project_driver.py',
+		       'engine',
+		       './showcases/engineP/static', 
 		       Query
 		   ],
 		   [stdout(pipe(Out))]).
 
 cleanup_q(Out) :-
-    close(Out),
-    cd('../../..').
+    close(Out).
 
 
 read_lines(Out, Lines) :-

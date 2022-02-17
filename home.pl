@@ -31,7 +31,7 @@ life_blurb -->
     html(
 	div(id(life),
 	    p(
-		"Hello, My name is Alek, a current student of Computer Science at Concordia University of Montreal. Growing up with "
+		"Hello, My name is Alek and I am currently in my final year of Computer Science at Concordia University in Montreal. "
 	    )
 	   )
     ).
@@ -39,7 +39,7 @@ passions -->
     html(
 	div(id(passions),
 	    p(
-		"I have passions in artificial intellogence, more specifically natural language processing and logic that can go into it, how its applied, and how to use it to increase its value in our life. I believe in accessibility above all else and access to learning to be important in life and society."
+		"My passions include artificial intelligence, more specifically natural language processing with the logic that goes into it, how its applied, and how to use it to increase its value in our life. I believe that the accessibility to knowledge above all else is important in life and society."
 	    )
 	   )
     ).
