@@ -44,7 +44,7 @@ nav('Files', '/f').
 
 % sub_nav(Parent, Name, Path).
 sub_nav('Projects','Search Engine','/projects/engine').
-sub_nav('Projects','NL-means','/projects/nlmeans').
+%sub_nav('Projects','NL-means','/projects/nlmeans').
 
 
 % -- Footer -- %

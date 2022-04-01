@@ -19,7 +19,7 @@ home_page(_Request) :-
 			[
 			    \life_blurb,
 			    \passions,
-			    \accomplishments,
+			    %\accomplishments,
 			    \languages
 			])
 		]),
