@@ -39,7 +39,7 @@ passions -->
     html(
 	div(id(passions),
 	    p(
-		"My passions include artificial intelligence, more specifically natural language processing with the logic that goes into it, how its applied, and how to use it to increase its value in our life. I believe that the accessibility to knowledge above all else is important in life and society."
+		"My passions include artificial intelligence, more specifically natural language processing with the logic that goes into it, how it's applied, and how to use it to increase its value in our life. I believe that the accessibility to knowledge above all else is important in life and society."
 	    )
 	   )
     ).

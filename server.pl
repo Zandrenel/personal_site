@@ -18,15 +18,16 @@
 :- use_module(showcases/image_denoiser).
 
 
+
 :- multifile user:file_search_path/2.
 :- multifile http:location/3.
 
 :- dynamic user:file_search_path/2.
-:- dynamic   http:location/3.
+:- dynamic http:location/3.
 
 
 % FILE SEARCH PATHS
-
+ 
 :- prolog_load_context(directory, Dir),
    (   user:file_search_path(swi_site, Dir)
    ->  true
@@ -82,8 +83,8 @@ get_static(Request) :-
 
 
 
-server(Port) :-
-    http_server(http_dispatch, [port(Port)]).
+%server(Port) :-
+%    http_server(http_dispatch, [port(Port)]).
 
 
 
