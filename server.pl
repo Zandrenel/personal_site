@@ -88,6 +88,6 @@ get_static(Request) :-
 
 
 
-:- initialization(server(3030)).
+%:- initialization(server(3030)).
 
 
