@@ -62,7 +62,8 @@ description -->
 			  li('Uses the BM25 ranking algorithm'),
 			  li('Crawler uses SPIMI to construct the inverted index'),
 			  li('Records frequency of word per doc along with doc ID in the index'),
-			  li('Crawler built from scratch using requests and urlparse libraries')
+			  li('Crawler built from scratch using requests and urlparse libraries'),
+			  li(a([href="https://github.com/Zandrenel/Comp_479_crawler_queryProcessor"],"The Code"))
 		      ])
 	    ]).
 
