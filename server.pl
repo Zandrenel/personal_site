@@ -9,6 +9,8 @@
 :- use_module(library(http/http_path)).
 :- use_module(library(settings)).
 
+:- use_module(library(ssl)).
+min_protocol_version(tlsv1_3).
 
 :- use_module(base_elements).
 :- use_module(gallery_page).
