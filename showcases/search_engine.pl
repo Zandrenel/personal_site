@@ -88,8 +88,8 @@ process_query(Query,Results) :-
 
 setup_q(Query,Out) :-
 
-    process_create(path(python),
-		   [
+    process_create(path(python3),
+	   [
 		       'project_driver.py',
 		       'engine',
 		       './showcases/engineP/static', 
