@@ -64,17 +64,6 @@ footer -->
 	     ])
 	 ]).
 
-
-monero -->
-    html(div([id(monero),style('width:230px; float:left;')],
-	     [
-		 div([id(maddress),style('word-wrap:break-word;')],[
-			 'Monero Address',
-			 p('849HeaaqkopX8qrqsn3fyXba938JQ5MdvPAXEpXUmHBBBCY54zZDvhSYDCHf4rDvex6i7KwSQ8TGThUvfv1pYeMqCy6DW9p')]
-		    )]
-	    )
-	).
-
     
     
 

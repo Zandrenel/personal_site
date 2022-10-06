@@ -14,7 +14,18 @@
 % page unlike a predicate would be incorrect
 % if a page would fail make the case where it doesn't
 
+
+colors(red,'PowerUp.css').
+colors(art,'ArtsAndCrafts.css').
+colors(icecream,'MeltedIceCream.css').
+colors(sunkissed,'SunKissedRock.css').
+colors(midnight,'MidnightSwim.css').
+colors(street,'twilightStreet.css').
+colors(_,'base_colors.css').
+
+
 engine(Request) :-
+    colors(street,ColorScheme),
     member(method(post), Request),!,
     http_read_data(Request, [query=Q|_], []),
     process_query(Q,R0),
@@ -25,6 +36,7 @@ engine(Request) :-
 	[title('search engine')],
 	[
 	    \html_requires(static('styles.css')),
+	    \html_requires(static(ColorScheme)),
 	    \nav_bar,
 	    div(id(main),
 		[
@@ -37,10 +49,12 @@ engine(Request) :-
 	]).
 
 engine(_Request) :-
+    colors(street,ColorScheme),
     reply_html_page(
 	[title('search engine')],
 	[
 	    \html_requires(static('styles.css')),
+	    \html_requires(static(ColorScheme)),
 	    \nav_bar,
 	    div(id(main),
 		[
@@ -55,6 +69,7 @@ engine(_Request) :-
 description -->
     html([
 		h3('Search Engine'),
+		p('This project was done as a project for an information and data retrieval course at Concordia University. Here are some qualities and specifications it has.'),
 		ul([
 			  li('Crawler and Query processor engine built in Python'),
 			  li('Index is of first 10,000 pages from https://concordia.ca'),

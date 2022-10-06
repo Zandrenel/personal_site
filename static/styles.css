@@ -8,10 +8,6 @@
     
 }
 
-body {
-    color: #555555;
-    background-color: #222222;
-}
 
 #content {
     width:100%;
@@ -23,8 +19,6 @@ body {
     bottom: 0;
     width: 100%;
     height:75px;
-    background-color: #222;
-    color: #d1d1d1;
     text-align: center;
 }
 
@@ -32,8 +26,6 @@ body {
     display:inline-block;
     padding:16px;
     text-decoration:none;
-    color:#d1d1d1;
-	  
 }
 
 #monero {
@@ -54,7 +46,6 @@ body {
 
 /* The UL around the list */
 #navigationbar {
-    background-color: #333;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -73,16 +64,10 @@ body {
 .topnav {
 
     display: inline-block;
-    color: #bbb;
     padding: 16px;
     text-decoration: none;
     z-index:1000;
     border:none;
-}
-
-#navigationbar a:hover {
-  background-color: #555;
-  color: white;
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -97,7 +82,6 @@ body {
     top:55px;
     display: none;
     position: fixed;
-    background-color: #555;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     padding-inline-start:0;
     list-style-type:none;
@@ -105,16 +89,11 @@ body {
 }
 
 .dropdown-content a{
-    color: #999;
     z-index:1001;
     text-align:left;
     display:block;
     text-decoration:none;
 
-}
-
-.dropdown-content a:hover {
-    background-color: #ddd;
 }
 
 
@@ -132,21 +111,20 @@ body {
 
 #doc_body {
     justify-content: center;
-    background-color: #aabbbb;
     width: 100%;
     height: 100%;
     margin: 0 auto;
 }
 
 #leftcolumn {
-    background-color: #775577;
+
     width:10%;
     float:left;
     height:500px;
     padding:0;
 }
 #rightcolumn {
-    background-color: #775577;
+
     width:10%;
     float:left;
     height:500px;
@@ -155,10 +133,10 @@ body {
 
 #main {
     justify-content: center;
-    width:90%;
+    /* width:100%; */
     float:left;
-    padding:5%;
-    background-color: #eeeeee;
+    padding-left:22%;
+    padding-right:22%;
     opacity:1;
     z-index:-1;
 }
@@ -199,12 +177,10 @@ body {
     padding:16px;
     margin:6px;
     text-decoration:none;
-    background-color:#aaa;
     color:#000;
     width:70%;
 }
 
 .result:hover {
-    background-color:#888;
     color:#222;
 }

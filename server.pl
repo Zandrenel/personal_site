@@ -1,4 +1,4 @@
-:- use_module(library(http/http_unix_daemon)).
+%:- use_module(library(http/http_unix_daemon)).
 
 :- use_module(library(http/http_error)).
 :- use_module(library(http/http_files)).
@@ -84,17 +84,17 @@ get_static(Request) :-
 
 
 
-/*
+
 server(Port) :-
     http_server(http_dispatch,
-		[port(Port),
-		 ssl([certificate_file('/var/www/alexanderdelaurentiis.com/fullchain.pem'),
+		[port(Port)
+		 /*ssl([certificate_file('/var/www/alexanderdelaurentiis.com/fullchain.pem'),
 		      key_file('/var/www/alexanderdelaurentiis.com/privkey.pem')
 		      %min_protocol_version(tlsv1_3),
 		      %cipher_list('EECDH+AESGCM:EDH+AESGCM:EECDH+AES256:EDH+AES256:EECDH+CHACHA20:EDH+CHACHA20')
-		     ])
+		     ])*/
 		]).
-*/
+
 
 
 %:- initialization(server(3030)).

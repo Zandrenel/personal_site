@@ -1,0 +1,94 @@
+
+/* Basic that affects all pages */
+
+:root {
+    --base1: #222222;
+    --base2: #555555;
+    --base3: #d1d1d1;
+    --base4: #eeeeee;
+    --base5: #aabbbb;
+    --base6: #ffffff;
+    --base7: #333333;
+    --base8: #888888;
+}
+
+body {
+    color: var(--base2);
+    background-color: var(--base1);
+}
+
+#footer {
+    background-color: var(--base1);
+    color: var(--base3);
+}
+
+#footer a {
+    color:var(--base3);
+	  
+}
+
+/* The UL around the list */
+#navigationbar {
+    background-color: var(--base7);
+}
+
+/* every top level link in the topnav */
+.topnav {
+    color: #bbb;
+}
+
+#navigationbar a:hover {
+    background-color: var(--base2);
+  color: var(--base6);
+}
+
+
+.dropdown-content {
+    background-color: var(--base2);
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a{
+    color: #999;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--base3);
+}
+
+
+/* Text bodies that will apply to base level pages */
+
+#doc_body {
+    background-color: var(--base5);
+}
+
+#leftcolumn {
+    background-color: #775577;
+
+}
+#rightcolumn {
+    background-color: #775577;
+}
+
+#main {
+    background-color: var(--base4);
+}
+
+/* Gallery page specific styling */
+
+.gallery_image:hover {
+    box-shadow: 0 5px 15px #999999;
+}
+
+/* Engine page specific styling */
+
+.result {
+    background-color:var(--base3);
+    color:var(--base1);
+}
+
+.result:hover {
+    background-color:var(--base8);
+    color:var(--base1);
+}
