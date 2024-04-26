@@ -28,10 +28,6 @@
     text-decoration:none;
 }
 
-#monero {
-    margin:10px;
-    
-}
 
 /* Navigation Bar styling */
 /* The div that holds the navigation bar */
@@ -132,14 +128,18 @@
 }
 
 #main {
-    justify-content: center;
-    /* width:100%; */
-    float:left;
-    padding-left:22%;
-    padding-right:22%;
+    /* justify-content: center; */
+    width:100% !important;
+    margin: auto;
+    display: table;
+    /* float:left; */
+    /* padding-left:22%; */
+    /* padding-right:22%;  */
     opacity:1;
     z-index:-1;
 }
+
+
 
 /* Gallery page specific styling */
  
@@ -156,6 +156,31 @@
     box-shadow: 0 5px 15px #999999;
 }
 
+.enlarged_image {
+    border: none;
+    /* vertical-align: middle; */
+    /* aspect-ratio: auto 1024 / 1536; */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+    border-radius:8px;
+}
+.gallery_next_previous {
+    height: 20px;
+    width: 300px;
+}
+
+#img_button_container {
+    text-align: center;
+}
+#full_btn_img {
+    text-align: center;
+}
+
+#enlarged_picture_layout {
+    
+}
 
 #display {
     display: grid;
