@@ -2,18 +2,21 @@
 	      nav_bar/2,
 	      footer/2,
 	      in_construction/2]).
-
+:- use_module(src/color).
 % ---------Navigation Bar---------
 
 nav_bar -->
     {
 	findall(Name, nav(Name, _), ButtonNames),
 	maplist(as_top_nav, ButtonNames, TopButtons)
+	
     },
     html([div(
-	      id(top_nav_bar),
-	      div(id="navigationbar",TopButtons)
-	  )]).
+	      id(top_nav_bar),[
+		  div(id="navigationbar",[
+			  div(TopButtons),
+			  div(id(themeSelector),\selector)])
+	  ])]).
 
 
 
@@ -68,8 +71,7 @@ footer -->
     },
     html([div(id(footer),
 	      [
-		  div(id(footerlinks),
-		      FooterLinks)
+		  div(id(footerlinks),FooterLinks)
 	     ])
 	 ]).
 

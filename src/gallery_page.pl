@@ -1,16 +1,13 @@
 :- module(gallery_page,[gallery/1, gallery/2]).
 
-:- use_module(src/color).
-
 :- dynamic
        image/3.
 
 gallery(_Request) :-
-    colors_css(ColorScheme),
     reply_html_page(
 	[title('Gallery')],
 	[\html_requires(static('styles.css')),
-	 \html_requires(static(ColorScheme)),
+	 \html_requires(static('themes.css')),
 	 \nav_bar,
 	 h1([style='text-align:center;'],['Gallery of Tiddles']),
 	 \display_gallery,
@@ -19,12 +16,11 @@ gallery(_Request) :-
     
 
 gallery(IMG,_Request) :-
-    colors_css(ColorScheme),
     image(IMG,Link,Next,Previous),
     reply_html_page(
 	[title('Gallery')],
 	[\html_requires(static('styles.css')),
-	 \html_requires(static(ColorScheme)),
+	 \html_requires(static('themes.css')),
 	 \nav_bar,
 	 h1([style='text-align:center;'],['Gallery of Tiddles']),
 	 div(id(main),[

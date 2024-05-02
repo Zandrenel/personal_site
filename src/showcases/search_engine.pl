@@ -5,7 +5,6 @@
 :- use_module(library(http/http_client)).
 :- use_module(library(http/http_error)).
 :- use_module(library(http/html_write)).
-:- use_module(src/color).
 
 
 % Note to self, this is prolog
@@ -15,7 +14,6 @@
 
 
 engine(Request) :-
-    colors(street,ColorScheme),
     member(method(post), Request),!,
     http_read_data(Request, [query=Q|_], []),
     process_query(Q,R0),
@@ -26,7 +24,7 @@ engine(Request) :-
 	[title('search engine')],
 	[
 	    \html_requires(static('styles.css')),
-	    \html_requires(static(ColorScheme)),
+	    \html_requires(static('themes.css')),
 	    \nav_bar,
 	    div(id(main),
 		[
@@ -39,12 +37,11 @@ engine(Request) :-
 	]).
 
 engine(_Request) :-
-    colors(street,ColorScheme),
     reply_html_page(
 	[title('search engine')],
 	[
 	    \html_requires(static('styles.css')),
-	    \html_requires(static(ColorScheme)),
+	    \html_requires(static('themes.css')),
 	    \nav_bar,
 	    div(id(main),
 		[

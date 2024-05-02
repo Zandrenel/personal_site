@@ -3,15 +3,13 @@
 	      ]).
 
 :- use_module(src/base_elements).
-:- use_module(src/color).
    
 home_page(_Request) :-
-    colors_css(ColorScheme),
     reply_html_page(
 	[title('Home')],
 	[
 	    \html_requires(static('styles.css')),
-	    \html_requires(static(ColorScheme)),
+	    \html_requires(static('themes.css')),
 	    \nav_bar,
 	    div(id(content),
 		[

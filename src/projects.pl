@@ -9,11 +9,10 @@
 
 
 projects(_Request) :-
-    colors_css(ColorScheme),
     reply_html_page(
 	[title('Projects')],
 	[\html_requires(static('styles.css')),
-	 \html_requires(static(ColorScheme)),
+	 \html_requires(static('themes.css')),
 	 \nav_bar,
 	 div(id(main),
 	     [\placeholder]

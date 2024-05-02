@@ -103,6 +103,11 @@
     padding: 16px;    
 }
 
+/* Theme Selector */
+#themeSelector {
+    float:right;
+}
+
 /* Text bodies that will apply to base level pages */
 
 #doc_body {
@@ -174,7 +179,7 @@
 #img_button_container {
     text-align: center;
 }
-#full_btn_img {
+#full_img_btn {
     text-align: center;
 }
 

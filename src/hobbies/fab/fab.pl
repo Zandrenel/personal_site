@@ -3,15 +3,13 @@
 	      ]).
 
 :- use_module(src/base_elements).
-:- use_module(src/color).
 
 fab(_Request) :-
-    colors(street,ColorScheme),
     reply_html_page(
 	[title('fab')],
 	[
 	    \html_requires(static('styles.css')),
-	    \html_requires(static(ColorScheme)),
+	    \html_requires(static('themes.css')),
 	    \nav_bar,
 	    div(id(content),
 		[
