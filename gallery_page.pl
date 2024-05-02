@@ -1,9 +1,21 @@
 :- module(gallery_page,[gallery/1]).
 
+
+colors(red,'PowerUp.css').
+colors(art,'ArtsAndCrafts.css').
+colors(icecream,'MeltedIceCream.css').
+colors(sunkissed,'SunKissedRock.css').
+colors(midnight,'MidnightSwim.css').
+colors(street,'twilightStreet.css').
+colors(_,'base_colors.css').
+
+
 gallery(_Request) :-
+    colors(street,ColorScheme),
     reply_html_page(
 	[title('Gallery')],
 	[\html_requires(static('styles.css')),
+	 \html_requires(static(ColorScheme)),
 	 \nav_bar,
 	 h1([style='text-align:center;'],['Gallery of Tiddles']),
 	 \display_gallery,

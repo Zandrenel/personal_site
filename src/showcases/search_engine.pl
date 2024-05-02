@@ -1,12 +1,10 @@
 :- module(search_engine,[engine/1]).
 
-:- use_module(base_elements).
+
+:- use_module(src/base_elements).
 :- use_module(library(http/http_client)).
 :- use_module(library(http/http_error)).
 :- use_module(library(http/html_write)).
-
-:- http_handler(root('projects/engine'), engine, [prefix]).
-:- http_handler(root('projects/engine/results'), results, [prefix]).
 
 
 % Note to self, this is prolog
@@ -15,17 +13,7 @@
 % if a page would fail make the case where it doesn't
 
 
-colors(red,'PowerUp.css').
-colors(art,'ArtsAndCrafts.css').
-colors(icecream,'MeltedIceCream.css').
-colors(sunkissed,'SunKissedRock.css').
-colors(midnight,'MidnightSwim.css').
-colors(street,'twilightStreet.css').
-colors(_,'base_colors.css').
-
-
 engine(Request) :-
-    colors(street,ColorScheme),
     member(method(post), Request),!,
     http_read_data(Request, [query=Q|_], []),
     process_query(Q,R0),
@@ -36,7 +24,7 @@ engine(Request) :-
 	[title('search engine')],
 	[
 	    \html_requires(static('styles.css')),
-	    \html_requires(static(ColorScheme)),
+	    \html_requires(static('themes.css')),
 	    \nav_bar,
 	    div(id(main),
 		[
@@ -49,12 +37,11 @@ engine(Request) :-
 	]).
 
 engine(_Request) :-
-    colors(street,ColorScheme),
     reply_html_page(
 	[title('search engine')],
 	[
 	    \html_requires(static('styles.css')),
-	    \html_requires(static(ColorScheme)),
+	    \html_requires(static('themes.css')),
 	    \nav_bar,
 	    div(id(main),
 		[
@@ -107,7 +94,7 @@ setup_q(Query,Out) :-
 	   [
 		       'project_driver.py',
 		       'engine',
-		       './showcases/engineP/static', 
+		       './src/showcases/engineP/static', 
 		       Query
 		   ],
 		   [stdout(pipe(Out))]).

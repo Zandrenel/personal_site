@@ -1,18 +1,22 @@
 :- module(base_elements,[
 	      nav_bar/2,
-	      footer/2]).
-
+	      footer/2,
+	      in_construction/2]).
+:- use_module(src/color).
 % ---------Navigation Bar---------
 
 nav_bar -->
     {
 	findall(Name, nav(Name, _), ButtonNames),
 	maplist(as_top_nav, ButtonNames, TopButtons)
+	
     },
     html([div(
-	      id(top_nav_bar),
-	      div(id="navigationbar",TopButtons)
-	  )]).
+	      id(top_nav_bar),[
+		  div(id="navigationbar",[
+			  div(TopButtons),
+			  div(id(themeSelector),\selector)])
+	  ])]).
 
 
 
@@ -40,11 +44,19 @@ as_top_nav(Name, div(class(navitem),a([href=HREF, class=topnav], Name))) :-
 nav('Home', '/').
 nav('Gallery', '/gallery').
 nav('Projects', '/projects').
+nav('Blog', '/blog').
+nav('Hobbies', '/hobbies').
 nav('Files', '/f').
 
 % sub_nav(Parent, Name, Path).
 sub_nav('Projects','Search Engine','/projects/engine').
-%sub_nav('Projects','NL-means','/projects/nlmeans').
+sub_nav('Projects','Image Denoiser','/projects/imagedenoiser').
+sub_nav('Projects','CookBook','/projects/cookbook').
+sub_nav('Hobbies','FaB','/hobbies/fab').
+sub_nav('Hobbies','MTG','/hobbies/mtg').
+sub_nav('Hobbies','Plants','/hobbies/plants').
+sub_nav('Hobbies','Cooking','/hobbies/cooking').
+
 
 
 % -- Footer -- %
@@ -59,15 +71,23 @@ footer -->
     },
     html([div(id(footer),
 	      [
-		  div(id(footerlinks),
-		      FooterLinks)
+		  div(id(footerlinks),FooterLinks)
 	     ])
 	 ]).
 
     
     
 
+in_construction -->
+    html([
+		h1('Page unnavailable'),
+		p('I Sincerely apologize but this page is currently in construction')
+	    ]).
+
+
 %link(social, name, ref).
 link(github, 'This Site','https://github.com/Zandrenel/pesonal_site').
 link(github, 'Github','https://github.com/Zandrenel').
 link(linkedin, 'Linkedin','https://www.linkedin.com/in/alexander-de-laurentiis-a4b826162/').
+
+
