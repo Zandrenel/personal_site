@@ -7,14 +7,13 @@
 colors(Color,Theme):-
     colors(Color,Theme,_).
 
-active(street).
 colors(red,'PowerUp','PowerUp').
 colors(art,'ArtsAndCrafts','ArtsAndCrafts').
 colors(icecream,'MeltedIceCream','MeltedIceCream').
 colors(sunkissed,'SunKissedRock','SunKissedRock').
 colors(midnight,'MidnightSwim','MidnightSwim').
 colors(street,'twilightStreet','twilightStreet').
-colors(_,'base_colors','base_colors').
+
 
 
 

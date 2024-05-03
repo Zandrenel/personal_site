@@ -104,18 +104,17 @@ get_static(Request) :-
 :- http_handler(files(.), serve_files, [prefix]).
 :- http_handler(static(.), get_static, [prefix]).
 
+% sudo docker run -d -p 3030:3030 swi-site
 
-
-
-environment(dev).
-
-server(Port) :-
-    environment(dev),
+server(Port,Options) :-
+    member(dev,Options),
     http_server(http_dispatch,
-		[port(Port)]).
+		[port(Port)]),
+    member(docker,Options) -> thread_get_message(_Message); true.
 
-server(Port) :-
-    environment(prod),
+
+server(Port,Options) :-
+    member(prod,Options),
     http_server(http_dispatch,
 		[port(Port),
 		 ssl([
@@ -125,7 +124,9 @@ server(Port) :-
 			])
 		 %min_protocol_version(tlsv1_3),
 		 %cipher_list('EECDH+AESGCM:EDH+AESGCM:EECDH+AES256:EDH+AES256:EECDH+CHACHA20:EDH+CHACHA20')
-		]).
+		]),
+    member(docker,Options) -> thread_get_message(_Message); true.
+
 
 
 
