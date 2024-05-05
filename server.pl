@@ -118,8 +118,8 @@ server(Port,Options) :-
     http_server(http_dispatch,
 		[port(Port),
 		 ssl([
-			    certificate_file('/var/www/alexanderdelaurentiis.com/fullchain.pem'),
-			    key_file('/var/www/alexanderdelaurentiis.com/privkey.pem')
+			    certificate_file('/var/www/personal_site/.well-known/fullchain.pem'),
+			    key_file('/var/www/var/www/personal_site/.well-known/privkey.pem')
 
 			])
 		 %min_protocol_version(tlsv1_3),
