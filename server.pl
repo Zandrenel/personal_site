@@ -118,15 +118,17 @@ server(Port,Options) :-
     http_server(http_dispatch,
 		[port(Port),
 		 ssl([
-			    certificate_file('/var/www/personal_site/.well-known/fullchain.pem'),
-			    key_file('/var/www/var/www/personal_site/.well-known/privkey.pem')
+			    certificate_file('/etc/letsencrypt/live/alexanderdelaurentiis.com/fullchain.pem'),
+			    key_file('/etc/letsencrypt/live/alexanderdelaurentiis.com/privkey.pem')
 
 			])
 		 %min_protocol_version(tlsv1_3),
 		 %cipher_list('EECDH+AESGCM:EDH+AESGCM:EECDH+AES256:EDH+AES256:EECDH+CHACHA20:EDH+CHACHA20')
 		]),
     member(docker,Options) -> thread_get_message(_Message); true.
-
+server(Port,_Options):-
+    write('Error, Failure to run original server, reverting to dev'),
+    server(Port,[dev]).
 
 
 
