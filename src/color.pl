@@ -1,18 +1,14 @@
 :- module(color, [
 	      colors/2,
-	      colors/3,
 	      selector/2
 	      ]).
 
-colors(Color,Theme):-
-    colors(Color,Theme,_).
-
-colors(red,'PowerUp','PowerUp').
-colors(art,'ArtsAndCrafts','ArtsAndCrafts').
-colors(icecream,'MeltedIceCream','MeltedIceCream').
-colors(sunkissed,'SunKissedRock','SunKissedRock').
-colors(midnight,'MidnightSwim','MidnightSwim').
-colors(street,'twilightStreet','twilightStreet').
+colors('PowerUp','Power Up').
+colors('ArtsAndCrafts','Arts and Crafts').
+colors('MeltedIceCream','Melted Ice Cream').
+colors('SunKissedRock','Sunkissed Rock').
+colors('MidnightSwim','Midnight Swim').
+colors('twilightStreet','Twilight Street').
 
 
 
@@ -45,6 +41,6 @@ theme_script -->
 		     }|}
 		])).
 
-as_selector_inputs(Color, option([ value(Theme)],[Name])):-
-    colors(Color,Theme,Name).
+as_selector_inputs(Theme, option([ value(Theme)],[Name])):-
+    colors(Theme,Name).
     

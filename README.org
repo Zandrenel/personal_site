@@ -1,0 +1,103 @@
+#+TITLE: Personal Swi Prolog Site
+#+AUTHOR: ALexander De Laurentiis
+
+* Running
+** Dependencies
+| Package    | Last Used Version | Reason                            |
+|------------+-------------------+-----------------------------------|
+| swi-prolog |           8.4.2-1 | Run the actual Application/Server |
+| python     |          3.10.2-1 | Run the engine project            |
+| docker     |        1:23.0.6-1 | Build/run the dockerfile          |
+** Commands
+*** Run the Server
+**** Basic
+***** swipl -g "server(3030,[dev])" server.pl
+This command ran from the root of the repository will using swipl consult the server.pl file with the predicate server(Port,Options). The port can be whatever port you want to run the server on, and the options part currently accepts dev, prod, and docker as options. Running it with dev will run the server with no certificates as just http, running with prod will have it try to find the certificates and run using them for https. Running either with the docker option will run using the ~thread_get_message(_)~ call at the end of them which will stop the program from reaching EOF and just halting which is a common problem when trying to run the http_server with docker or as a service otherwise.
+**** Docker
+***** docker build ./ -t swi-site
+This will build the image from  the Dockerfile included in the root directory.
+***** docker run -d -p 3030:3030 swi-site
+This will run the built docker image as a daemon with ports 3030 and 3030 for http for https open.
+***** docker ps
+This shows the running docker processes
+***** docker stop <id>
+This ran with the first X characters of the docker process for the image will stop it.
+***** docker restart <id>
+This will restart the running container with the first X digits of the id.
+
+* Whats Left
+** Base functionality
+- [ ] Prettify the home page
+- [ ] enhance descriptions
+- [ ] Make the ssl certificate self renewing
+** Gallery
+- [ ] On server load prepare images
+  - [ ] create thumbnail size and med size photos on server startup
+** Projects
+*** Image Processor [/]
+- [ ] Implement file upload
+- [ ] Implement file download
+- [ ] Embed the python code either server or client side
+- [ ] have it take an image stream and return result in stream directly to client for download
+- [ ] load bar
+*** Engine [/]
+- [ ] Have it work without page reload
+- [ ] prettify
+*** Compiler [/]
+- [ ] Finish functionality
+- [ ] Compile it to WASM
+- [ ] Serve its WASM code in my site
+- [ ] Have users be able to test out differerent functionalities
+- [ ] Make a tab/field to try out each functionality
+- [ ] Have fully written guide for it
+**** TODO Semantic Analysis
+**** TODO Parsing
+**** TODO Abstract tree generation
+**** TODO Symbol table generation and semantic checking
+**** TODO Code Generation
+*** Audio Server [/]
+- [ ] Host a library of audio
+- [ ] Parse its data and show it off
+- [ ] Demo parsing its streams online
+*** Meal Planner [/]
+- [ ] Have a repository of recipes
+- [ ] Be able have it give you a weekly mealplan and the ingredients
+- [ ] Can give dietary contraints and filters
+- [ ] Can add recipes and ingredients to it
+- [ ] Decide if keeping the data through CSV or prolog style structure
+*** FaB Rule Lawyer
+- [ ] Debate starting layout
+- 
+** Blog
+- [ ] Decide on layout and purpose
+- [ ] Create a format for displaying articles and how to write articles
+- [ ] Create a tag system and way to filter articles
+- [ ] write something small to start
+** Hobbies
+*** FaB
+- [ ] Create a layout for heroes played
+- [ ] Create a window tab system or several sub page system that can be dynamically loaded
+- [ ] Make content to start for Teklovossen
+  - [ ] Write up tips and tricks for Teklovossen
+  - [ ] Write up deck guides and card choices
+- Deck respository?
+*** MTG
+- [ ] Decide purpose
+  - Deck repository
+  - tips and tricks
+*** Plants
+- [ ] Decide layout
+- [ ] Tabs for plants I know of
+- [ ] Tips and tricks for Cactuses and Basil
+- [ ] Links to plant blog posts
+*** Cooking
+- [ ] Decide on layout and structure
+- [ ] Use for Recipe sharing
+- [ ] Have a section for recipe donation
+** Files
+- [ ] Decide upon how to best use this section
+- [ ] Maybe share video files or write music or recipe pdfs or such?
+* Fun Facts and Technologies
+- The site is ran using swi-prolog
+- 
+
