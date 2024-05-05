@@ -103,7 +103,7 @@ get_static(Request) :-
 :- http_handler(root(hobbies/plants), plants, [prefix]).
 :- http_handler(files(.), serve_files, [prefix]).
 :- http_handler(static(.), get_static, [prefix]).
-
+:- http_handler(root('.well-known/'), http_reply_from_files('.well-known', []), [prefix]).
 % sudo docker run -d -p 3030:3030 swi-site
 
 server(Port,Options) :-

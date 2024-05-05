@@ -11,29 +11,25 @@
 ** Commands
 *** Run the Server
 **** Basic
-_swipl -g "server(3030,[dev])" server.pl_
+***** swipl -g "server(3030,[dev])" server.pl
 This command ran from the root of the repository will using swipl consult the server.pl file with the predicate server(Port,Options). The port can be whatever port you want to run the server on, and the options part currently accepts dev, prod, and docker as options. Running it with dev will run the server with no certificates as just http, running with prod will have it try to find the certificates and run using them for https. Running either with the docker option will run using the ~thread_get_message(_)~ call at the end of them which will stop the program from reaching EOF and just halting which is a common problem when trying to run the http_server with docker or as a service otherwise.
-
 **** Docker
-_docker build ./ -t swi-site_
+***** docker build ./ -t swi-site
 This will build the image from  the Dockerfile included in the root directory.
-
-_docker run -d -p 3030:3030 swi-site_
+***** docker run -d -p 3030:3030 swi-site
 This will run the built docker image as a daemon with ports 3030 and 3030 for http for https open.
-
-_docker ps_
+***** docker ps
 This shows the running docker processes
-
-_docker stop <id>_
+***** docker stop <id>
 This ran with the first X characters of the docker process for the image will stop it.
-
-_docker restart <id>_
+***** docker restart <id>
 This will restart the running container with the first X digits of the id.
 
 * Whats Left
 ** Base functionality
 - [ ] Prettify the home page
 - [ ] enhance descriptions
+- [ ] Make the ssl certificate self renewing
 ** Gallery
 - [ ] On server load prepare images
   - [ ] create thumbnail size and med size photos on server startup
