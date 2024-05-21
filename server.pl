@@ -103,32 +103,26 @@ get_static(Request) :-
 :- http_handler(root(hobbies/plants), plants, [prefix]).
 :- http_handler(files(.), serve_files, [prefix]).
 :- http_handler(static(.), get_static, [prefix]).
-:- http_handler(root('.well-known/'), http_reply_from_files('.well-known', []), [prefix]).
+
 % sudo docker run -d -p 3030:3030 swi-site
 
+server_options(dev,[port(_)]).
+server_options(prod,[port(_),ssl([
+			    certificate_file('.well-known/fullchain.pem'),
+			    key_file('.well-known/privkey.pem'),
+			    cipher_list('EECDH+AESGCM:EDH+AESGCM:EECDH+AES256:EDH+AES256:EECDH+CHACHA20:EDH+CHACHA20')
+			    %min_protocol_version(tlsv1_3),
+			])]).
+
 server(Port,Options) :-
-    member(dev,Options),
+    write('Starting up Server...\n'),
+    Options = [ENV|_],
+    format('Settings for ~w being used\n',[ENV]),
+    format('Port:~w\n',[Port]),
+    server_options(ENV,HTTP_Options),
+    HTTP_Options = [port(Port)|_],
     http_server(http_dispatch,
-		[port(Port)]),
+		HTTP_Options),
     member(docker,Options) -> thread_get_message(_Message); true.
-
-
-server(Port,Options) :-
-    member(prod,Options),
-    http_server(http_dispatch,
-		[port(Port),
-		 ssl([
-			    certificate_file('/etc/letsencrypt/live/alexanderdelaurentiis.com/fullchain.pem'),
-			    key_file('/etc/letsencrypt/live/alexanderdelaurentiis.com/privkey.pem')
-
-			])
-		 %min_protocol_version(tlsv1_3),
-		 %cipher_list('EECDH+AESGCM:EDH+AESGCM:EECDH+AES256:EDH+AES256:EECDH+CHACHA20:EDH+CHACHA20')
-		]),
-    member(docker,Options) -> thread_get_message(_Message); true.
-server(Port,_Options):-
-    write('Error, Failure to run original server, reverting to dev'),
-    server(Port,[dev]).
-
 
 
