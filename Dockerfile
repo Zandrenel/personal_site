@@ -1,6 +1,7 @@
 # Install the base archlinux repo and update it
-FROM archlinux:base
-RUN pacman -Syu --noconfirm
+FROM archlinux:multilib-devel
+RUN pacman -Sy archlinux-keyring --noconfirm
+RUN pacman -Syyu --noconfirm
 
 # Copy the code and set the dir
 COPY . /app
