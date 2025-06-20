@@ -10,9 +10,9 @@ StartLimitInterval=60
 LimitNOFILE=1000
 StartLimitBurst=5
 WorkingDirectory=/var/www/personal_site
-ExecStart=/usr/local/bin/swipl server.pl --https --no-fork --user=www-data \
-   --certfile=/var/www/xyz.com/server.crt \
-   --keyfile=/var/www/xyz.com/server.key \
+ExecStart=/usr/bin/swipl -g "server(443,[prod,docker])" server.pl --https --no-fork --user=www-data \
+   --certfile=/etc/letsencrypt/live/alexanderdelaurentiis.com/cert.pem \
+   --keyfile=/etc/letsencrypt/live/alexanderdelaurentiis.com/privkey.pem\
    --workers=16 \
    --cipherlist=EECDH+AESGCM:EDH+AESGCM:EECDH+AES256:EDH+AES256:CHACHA20 \
    --keep_alive_timeout=2
