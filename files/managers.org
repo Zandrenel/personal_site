@@ -1,0 +1,64 @@
+#+TITLE:Utility Managers Notes
+#+STARTUP: overview
+
+* Network Manager
+- package: networkmanager
+- systemctl enable NetworkManager
+| <15>                                              | <30>                                                          |
+| Description                                       | Command                                                       |
+|---------------------------------------------------+---------------------------------------------------------------|
+| GUI                                               | nmtui                                                         |
+| Show all connections                              | nmcli connection show                                         |
+| Connect to wifi                                   | nmcli device                                                  |
+| Shows all reachable wifi network and their signal | nmcli device wifi list                                        |
+| Connect to the network whose name is designated   | nmcli device wifi connect <SSID or BSSID> password <password> |
+| Disconnect an interface                           | disconnect ifname eth0                                        |
+| switch connection                                 | nmcli connection up <name or uuid>                            |
+| delete a connection (forget a network)            | nmcli connection delete <name or uuid>                        |
+| list of devices and states                        | nmcli device                                                  |
+* Sound Utility
+- packaages: alsamixer alsa-utils pavucontrol pulseaudio pulseaudio-alsa
+- commands
+** Alsamixer
+  - amixer sset Master <unmute | mute>
+  - amixer sset Speaker <unmute | mute>
+  - amixer sset Headphone <unmute | mute>
+  - alsamixer
+    - Brings up the terminal gui app
+  - tests
+    - speaker-test -c 2
+    - speaker-test -c 8
+    - speaker-test -D default:PCH -c 8
+      - will test the designated speaker
+** pavucontrol
+- pavucontrol
+  - open up gui to choose input/output for
+    - mic
+    - speakers
+    - and mute/ etc...
+* Bluetooth Manager
+- package: bluez bluez-utils blueman pulseaudio-bluetooth
+- systemctl [option] bluetooth.service
+  - o:restart
+  - o:enable
+  - o:disable
+- pulseaudio --start
+  - start it, run if getting the error when trying to connect
+- pulseaudio -k
+  - kill pulseaudio
+** Ways to use it
+- bluetoothctl
+  - commands
+    - help
+    - power on: turns bluetooth controller on
+    - power off: turns bluetooth controller off
+    - devices: lists previous/current connections
+    - agent on
+    - pair /MAC_adress/
+      - Pair for new device
+    - trust /MAC_adress/
+    - connect /MAC_adress/
+      - connect paired device
+- blueman
+  - blueman-manager
+    - opens up GUI

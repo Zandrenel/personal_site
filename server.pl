@@ -13,7 +13,6 @@
 
 :- use_module(library(http/http_ssl_plugin)).
 
-
 :- use_module(src/base_elements).
 :- use_module(src/gallery_page).
 :- use_module(src/home).

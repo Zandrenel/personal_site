@@ -1,0 +1,149 @@
+#+TITLE: Notes on my Arch Install
+#+AUTHOR: Alexander De Laurentiis
+#+DESCRIPTION: Notes on my personal arch linux installation and preffered applications for my own future reference as to allow me to replicate such an environment if ever the need arises.
+#+STARTUP: align
+#+STARTUP: shrink
+#+STARTUP: overview
+#+begin_comment
+Command =C-c TAB= will unshrink a column of a table
+#+end_comment
+
+* Basics
+[[https://wiki.archlinux.org/index.php/Installation_guide][Arch wiki guide]]
+** Steps
+1) Boot into live
+2) set locales
+3) connect to internet (ethernet best)
+4) partion taget drive
+   - use parted as my preffered
+5) mount partitions
+6) run pacstrap to install arch linux
+   - may need to refresh keys:
+     - One possible solution:
+       - pacman-keys --init
+       - pacman-keys --populate archlinux
+       - pacman-keys --refresh-keys
+     - The error may be the keyserver itself, then change the keyserver then refresh
+       - EX:
+       - add ~keyserver pgp.mit.edu~
+	 - to the file ~/etc/pacman.d/gnupg/gpg.conf~
+       - then run ~pacman-key --refresh-keys~
+7) install bootloader
+8) install network managers or decide how will work
+   - [[https://wiki.archlinux.org/title/NetworkManager][NetworkManager]]
+9) make a new user profile
+   - ~useradd -m -G wheel -s /bin/bash your_username~
+   - ~passwd your_username~
+* Ex Drive Partition UEFI
+| part | start  | end       | File System    | name                 | flags     |
+|    1 | 0%     | ~260MB+   | fat32          | EFI system partition | boot, esp |
+|    2 | ~260MB | 512MB-XMB | linux-swap(v1) | Linux Swap           |           |
+|    3 | XMB    | 100%      | ext4           | Linux x86-64 root    |           |
+* Bootloader UEFI grub
+- arch-chroot into the new primary partition
+- mount the boot partition to ~/boot~
+- install:
+  - grub
+  - os-prober
+  - a linux kernal of choice, EX:
+    - linux
+    - linux-zen
+    - linux-hardened
+    - etc.
+- ~grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB~
+  - if this step give's problems, check that UEFI is enabled in bios 
+- run ~grub-mkconfig /boot/grub/grub.cfg~
+- reboot
+* Graphics
+ - [[file:syslshw.txt][lshw]]
+ - [[file:sysdmidecode.txt][dmidecode]]
+ Config is kept in the .config directory
+** Packages/Drivers
+*** Bumblebee
+ | Package   | Description                                      |
+ |-----------+--------------------------------------------------|
+ | bumblebee | Manages between an integrated gpu and nvidia one |
+*** Nvidia
+| Drivers            |
+|--------------------|
+| nvidia-utils       |
+| nvidia             |
+| xf86-video-nouveau |
+*** Intel
+| Driver           |
+|------------------|
+| xf86-video-intel |
+*** Xorg
+| Package         | Description               |
+|-----------------+---------------------------|
+| xorg-server     | manages graphical display |
+| xorg-xauth      | xorg required             |
+| xorg-xinit      | xorg req                  |
+| xterm           | default terminal emulator |
+| xf86-video-vesa | backup video driver       |
+* Controllers
+** audio
+  - alsamixer
+    - commandline/command line graphical audio control
+** bluetooth
+ - Packages to use bluetooth
+   - bluez
+   - bluez-utils
+   - blueman
+   - pulseaudio
+   - pulseaudio-alsa
+   - pulseaudio-bluetooth
+     - remember *pulseaudio --start*
+ - optional: pavucontrol
+   - graphical easy to understand audio control
+* Core
+** install Yay
+- have base-devel and git installed
+- clone ~https://aur.archlinux.org/yay.git~ to ~/opt~
+- Change its owner
+  - ~sudo chown -R your_username:users ./yay~
+- build it
+  - ~cd /opt/yay~
+  - ~makepkg -si~
+** text editor (emacs)
+*** sub/deps
+ #+begin_quote
+ All are frequent use packages/applications that would require separate download for use possibly, not guaranteed though.
+ #+end_quote
+| Language           | dependencies                 |
+|--------------------+------------------------------|
+| LaTeX              | texlive                      |
+| prolog             | scryer-prolog                |
+| java               | java-sdk 15                  |
+| python             | python & pip(for convenience |
+| rust/scryer-prolog | cargo & rust                 |
+| haskell            | ghc                          |
+| c++                | cmake(useful) & g++          |
+** media
+| Package     | Description                               |
+|-------------+-------------------------------------------|
+| sxiv        | opens/views images                        |
+| gimp        | image editing software                    |
+| mpv         | audio/video player                        |
+| ffmpeg      | screen/webcam/audio recording application |
+| zip         | zips files                                |
+| unzip       | unzips files                              |
+| scrot       | take screenshots of full screens/windows  |
+| pavucontrol | GUI audio io controller                   |
+* Additional
+** Environment
+| Package    | Description            |
+|------------+------------------------|
+| xmonad     | Haskell based wm       |
+| brave      | Chromium based browser |
+| xwallpaper | wallpaper setter       |
+| termite    | terminal emulator      |
+** Utility
+|           | <20>                                                   |
+| Package   | Description                                            |
+|-----------+--------------------------------------------------------|
+| Xbindkeys | allows system keybinds through a config file           |
+| xrandr    | allows use of multiple monitors and screen size config |
+| openssh   | secure shell access to remote systems                  |
+|           |                                                        |
+|           |                                                        |

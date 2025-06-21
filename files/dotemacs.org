@@ -1,0 +1,323 @@
+
+[[file:/usr/share/emacs/27.1/lisp/][Directory with source files]]
+#+STARTUP: overview 
+
+* Defaults
+#+BEGIN_SRC emacs-lisp
+  (setq browse-url-browser-function 'browse-url-generic
+	browse-url-generic-program "brave")
+
+
+
+  ;;Extra paths
+  (add-to-list 'exec-path "/usr/local/bin")
+
+  ;; Tell emacs where is your personal elisp lib dir
+  (add-to-list 'load-path "~/.emacs.d/lisp/")
+
+  ;; Extra Execute paths
+  ;;(setq exec-path (append exec-path '("/usr/local/bin")))
+
+  ;;Scroll step
+  (setq scroll-step 1)
+
+  ;; Ignore bell
+  (setq ring-bell-function 'ignore)
+
+  (setq backup-directory-alist
+          `(("." . "~/.emacs-saves/"))))
+#+END_SRC
+
+* Window Modifications
+#+BEGIN_SRC emacs-lisp
+
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1) 
+(setq inhibit-splash-screen t)
+(set-fringe-mode 0) 
+(display-time-mode t)
+
+;; Displays line numbers settings
+;;(column-number-mode)
+;;(global-display-line-numbers-mode t)
+
+ ; Enable transient mark mode
+(transient-mark-mode 1)
+#+END_SRC
+
+* Additional packages loading
+#+BEGIN_SRC emacs-lisp
+;;additional Load paths
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+(pdf-tools-install)
+#+END_SRC
+* Major Mode Mods
+** EXWM
+#+BEGIN_SRC emacs-lisp
+(require 'exwm)
+(require 'exwm-config)
+(exwm-config-example)
+
+#+END_SRC
+** TRAMP
+#+BEGIN_SRC emacs-lisp
+(setq tramp-default-method "ssh")
+(setq projectile-mode-line "Projectile")
+#+END_SRC
+
+** Org Mode
+#+BEGIN_SRC emacs-lisp
+
+  ;;Org mode configuration
+  ;; Enable Org mode
+  (require 'org)
+
+  ;;increase the scale of embedded latex
+  (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5))
+
+  ;;adds hook for viewing latex in org mode
+  (add-hook 'org-mode-hook 'org-fragtog-mode)
+
+
+  ;; Make Org mode work with files ending in .org
+  (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+
+  ;; The above is the default in recent emacsen
+  (setq org-todo-keywords 
+	'((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
+  (setq org-src-tab-acts-natively t)
+
+(setq org-adapt-indentation nil)
+
+#+END_SRC
+
+*** Agendas
+#+BEGIN_SRC emacs-lisp
+  (setq org-agenda-files (list "~/Documents/Org/Agendas/school.org"
+			       "~/Documents/Org/Agendas/home.org"
+			       "~/Documents/Org/Agendas/winter2022.org"
+			       "~/Documents/Org/Agendas/relationship.org"
+			       "~/Documents/Org/Agendas/self.org"))
+#+END_SRC
+
+*** Babel Added Languages
+ #+BEGIN_SRC emacs-lisp
+ ;;Org mode additional Languages
+ (org-babel-do-load-languages
+  'org-babel-load-languages
+  '((prolog . t)))
+ #+END_SRC
+*** Org Keybinds
+ #+BEGIN_SRC emacs-lisp
+ ;;----Org mode keybinds-----
+ ;; Standard key bindings
+ (global-set-key "\C-cl" 'org-store-link)
+ (global-set-key "\C-ca" 'org-agenda)
+ (global-set-key "\C-cb" 'org-iswitchb)
+
+
+ #+END_SRC
+*** Edraw
+#+begin_src emacs-lisp
+
+  (with-eval-after-load 'org
+  (require 'edraw-org)
+  (edraw-org-setup-default))
+
+  (autoload 'edraw-mode "edraw-mode")
+  (add-to-list 'auto-mode-alist '("\\.edraw\\.svg$" . edraw-mode))
+  (require 'edraw)
+
+
+  (progn
+  (insert " ")
+  (let ((editor (edraw-editor
+		 ;; Make an overlay that covers " "
+		 ;; 'evaporate means automatic deletion
+		 :overlay (let ((overlay (make-overlay (1- (point)) (point))))
+			    (overlay-put overlay 'evaporate t)
+			    overlay)
+		 ;; Initial SVG
+		 :svg (let ((initial-svg (svg-create 400 300)))
+			(dom-append-child
+			 initial-svg
+			 (dom-node 'g (list (cons 'id "edraw-body")) ;; g#edraw-body is the edit target area
+				   (dom-node 'rect (list (cons 'x "100")
+							 (cons 'y "100")
+							 (cons 'width "200")
+							 (cons 'height "100")
+							 (cons 'fill "blue")))))
+			initial-svg)
+		 ;; Function called when saving
+		 :document-writer (lambda (svg &rest _)
+				    (pop-to-buffer "*svg output*")
+				    (erase-buffer)
+				    (edraw-svg-print
+				     svg nil 'edraw-svg-print-attr-filter 0))
+		 ;; Add one item to the main menu
+		 :menu-filter (lambda (menu-type items &rest _)
+				(pcase menu-type
+				  ('main-menu
+				   (append
+				    items
+				    `(((edraw-msg "Close") (lambda (editor) (edraw-close editor))))))
+				  (_ items))))))
+    ;; Initialize editor
+    (edraw-initialize editor)
+    ;; Add key binding
+    (overlay-put (edraw-overlay editor)
+		 'keymap
+		 (let ((original-keymap (overlay-get (edraw-overlay editor) 'keymap))
+		       (km (make-sparse-keymap)))
+		   (set-keymap-parent km original-keymap)
+		   (define-key km (kbd "C-c C-c") (lambda () (interactive) (edraw-close (edraw-editor-at))))
+		   km))))
+
+
+#+end_src
+** Prolog Mode
+#+begin_src emacs-lisp
+(autoload 'run-prolog "prolog" "Start a prolog sub-process." t)
+(autoload 'prolog-mode "prolog" "Major mode for editing Prolog programs." t)
+(autoload 'mercury-mode "prolog" "Major mode for editing a Mercury programs." t)
+(setq proloh-system 'swi)
+(setq auto-mode-alist (append '(("\\.pl$" . prolog-mode)
+                      ("\\.m$" . mercury-mode))
+		      auto-mode-alist))
+
+(require 'ediprolog)
+(global-set-key [f12] 'ediprolog-dwim)		     
+#+end_src
+
+** C++ mode
+#+begin_src emacs-lisp
+(setq c-basic-offset 4)
+#+end_src
+** Web-Mode
+#+begin_src emacs-lisp
+  (require 'web-mode)
+  (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+#+end_src
+** Lisp Mode
+#+begin_src emacs-lisp
+  (setq auto-mode-alist (append '(("\\.lisp$" . lisp-mode))
+				   auto-mode-alist))
+#+end_src
+** SES-mode
+#+begin_src emacs-lisp
+;; ses-csv.el -- Read/Write CSV file for SES
+;; Author: Takashi Hattori (hattori@sfc.keio.ac.jp)
+;; Requires: Ruby
+
+(defun ses-read-from-csv-file (file)
+  "Insert the contents of a CSV file named FILE into the current position."
+  (interactive "fCSV file: ")
+  (let ((buf (get-buffer-create "*ses-csv*"))
+	text)
+    (save-excursion
+      (set-buffer buf)
+      (erase-buffer)
+      (process-file "ruby" file buf nil "-e" "require 'csv'; CSV::Reader.parse(STDIN) { |x| puts x.join(\"\\t\") }")
+      (setq text (buffer-substring (point-min) (point-max))))
+    (ses-yank-tsf text nil)))
+
+(defun ses-write-to-csv-file (file)
+  "Write the values of the current buffer into a CSV file named FILE."
+  (interactive "FCSV file: ")
+  (push-mark (point-min) t t)
+  (goto-char (- (point-max) 1))
+  (ses-set-curcell)
+  (ses-write-to-csv-file-region file))
+
+(defun ses-write-to-csv-file-region (file)
+  "Write the values of the region into a CSV file named FILE."
+  (interactive "FCSV file: ")
+  (ses-export-tab nil)
+  (let ((buf (get-buffer-create "*ses-csv*")))
+    (save-excursion
+      (set-buffer buf)
+      (erase-buffer)
+      (yank)
+      (call-process-region (point-min) (point-max) "ruby" t buf nil "-e" "require 'csv'; w = CSV::Writer.create(STDOUT); STDIN.each { |x| w << x.chomp.split(/\\t/) }")
+      (write-region (point-min) (point-max) file))))
+
+#+end_src
+
+#+RESULTS:
+: ses-write-to-csv-file-region
+
+* Minor Mode Mods
+** engine-mode
+Bound to key *C-x /* to start while highlighting a selection
+#+begin_src emacs-lisp
+(require 'engine-mode)
+(engine-mode t)
+(defengine github
+  "https://github.com/search?ref=simplesearch&q=%s"
+  :keybinding "g")
+(defengine duckduckgo
+  "https://duckduckgo.com/?q=%s"
+  :keybinding "d")
+#+end_src
+* Packages
+** multiple-cursors
+#+BEGIN_SRC emacs-lisp
+  (require 'multiple-cursors)
+
+  ;; When you have an active region that spans multiple lines, the following will
+  ;; add a cursor to each line:
+  
+  (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+      
+  ;; When you want to add multiple cursors not based on continuous lines, but based on
+  ;; keywords in the buffer, use:
+
+  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+  (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+#+END_SRC
+
+** emms
+#+begin_src emacs-lisp
+(require 'emms-setup)
+(setq emms-source-file-default-directory "~/Music/")
+;;(emms-minimalistic)
+(emms-standard)
+(emms-default-players)
+#+end_src
+
+** Ispell
+#+begin_src emacs-lisp
+;; Completion words longer than 4 characters
+(custom-set-variables
+  '(ac-ispell-requires 4)
+  '(ac-ispell-fuzzy-limit 4))
+
+(eval-after-load "auto-complete"
+  '(progn
+     (ac-ispell-setup)))
+ 
+(add-hook 'git-commit-mode-hook 'ac-ispell-ac-setup)
+(add-hook 'mail-mode-hook 'ac-ispell-ac-setup)
+
+#+end_src
+   
+** Math-Preview
+#+begin_src emacs-lisp
+
+#+end_src
+
+** elcord
+#+begin_src emacs-lisp
+(require 'elcord)
+(elcord-mode)
+#+end_src
+
