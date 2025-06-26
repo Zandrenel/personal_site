@@ -144,7 +144,27 @@
     z-index:-1;
 }
 
+/* Home Page Images */
 
+.home_section {
+    width:100%;
+    display:grid;
+    justify-content: center;
+}
+
+.lang_header {
+    text-align:center;
+}
+
+.lang_div {
+    float:left;
+}
+
+.lang_img {
+    width: 50px;
+    border-radius:8px;
+    margin:2%;
+}
 
 /* Gallery page specific styling */
  
