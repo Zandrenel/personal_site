@@ -57,18 +57,24 @@ image(Img,Link,none,none):-
 % Helper methods for the gallery
 
 format_imgs([],[]).
-format_imgs([H1|T1],[H2|T2]):- 
-    http_absolute_location(gallery_images(H1), P, []),
-    format(atom(A), '/gallery/~s', [H1]),    
-    H2 = div(a([href=A],img([class(gallery_image),src(P),alt=H1]))),
-    ([Next|_T] = T1 -> 
-	 assertz(image(H1,P,Next));
-     assertz(image(H1,P,none))),
+format_imgs([H1|T1],[H2|T2]):-
+    format(atom(A), '~s.jpg', [H1]),
+    format(atom(AL), '/gallery/~s.jpg', [H1]),
+    format(atom(AF), 'fullsize/~s.jpg', [H1]),    
+    format(atom(AT), 'thumbnail/~s-thumbnail.jpg', [H1]),
+    http_absolute_location(gallery_images(AT), P, []),
+    http_absolute_location(gallery_images(AF), P1, []),
+    H2 = div(a([href=AL],img([class(gallery_image),src(P),alt=AL]))),
+    ([Next|_T] = T1 ->
+	 (
+	     format(atom(N), '~s.jpg', [Next]),
+	     assertz(image(A,P1,N)));           
+     assertz(image(A,P1,none))),
     format_imgs(T1,T2).
 
-    
 
-    
+
+
 previous_next_buttons(Previous, Next) -->
     {
 	\+ Previous = none,
@@ -96,14 +102,49 @@ previous_next_buttons(Previous,_Next) -->
 reverse_list([]) --> [].
 reverse_list([H|T]) --> reverse_list(T), [H].
 
+img_diff([],_,[]).
+img_diff([H|T],S1,Diff):-
+    member(H,S1),
+    img_diff(T,S1,Diff).
+img_diff([H|T],S1,[H|T2]):-
+    img_diff(T,S1,T2).
+
 display_gallery -->
     {
-	directory_files('./static/gallery',F01),
+	directory_files('./static/gallery/fullsize',F01),
 	delete(F01,'.',F02),
 	delete(F02,'..',F0),
-	format_imgs(F0,F1),
+	maplist(strip_suffix(".jpg"),F0,Stri0),
+	directory_files('./static/gallery/thumbnail',T01),
+	delete(T01,'.',T02),
+	delete(T02,'..',T0),
+	maplist(strip_suffix("-thumbnail.jpg"),T0,Stri1),
+	img_diff(Stri0,Stri1,Diff),
+	maplist(convert_to_thumbnail,Diff),
+	format_imgs(Stri0,F1),
 	phrase(reverse_list(F1), F)
     },
     html(
 	div(id(display),F)
     ).
+
+convert_to_thumbnail(Img):-
+    format(atom(Thumbnail), './static/gallery/thumbnail/~s-thumbnail.jpg', [Img]),
+    format(atom(Fullsize), './static/gallery/fullsize/~s.jpg', [Img]),
+    process_create(path(ffmpeg),
+		   [
+		       '-i',
+		       Fullsize,
+		       '-vf',
+		       'scale=200:266',
+		       Thumbnail
+		   ],
+		   []).
+
+
+strip_suffix(Suff0,Word0,Rem0):-
+    atom_chars(Word0,Word),
+    atom_chars(Suff0,Suff),
+    append(Rem,Suff,Word),
+    atom_chars(Rem0,Rem).
+
