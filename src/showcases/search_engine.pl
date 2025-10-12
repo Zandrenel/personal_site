@@ -16,10 +16,9 @@
 engine(Request) :-
     member(method(post), Request),!,
     http_read_data(Request, [query=Q|_], []),
-    process_query(Q,R0),
-    R0 = [Total|R1],
-    format_results(R1,R2),
-    delete(R2,'',R),
+    process_query(Q,R0,Code),
+    length(R0,Total),
+    format_results(R0,R),
     reply_html_page(
 	[title('search engine')],
 	[
@@ -30,6 +29,7 @@ engine(Request) :-
 		[
 		    \description,
 		    \query_form,
+		    div(['API Status Code: ',Code]),
 		    div(['Total Results: ',Total]),
 		    div(R)
 		]),
@@ -81,31 +81,53 @@ query_form -->
 	)
     ).
 
-process_query(Query,Results) :-
-    setup_call_cleanup(
-	setup_q(Query,Out),
-	read_lines(Out,Results),
-	cleanup_q(Out)
-    ).
+process_query(Query, Message, StatusCode):-
+    string_concat('/query/',Query,Path),
+    parse_url(Url,
+	      [ protocol(http),
+		host('localhost'),
+		port(8000),
+		path(Path)
+	      ]),
+    write(Url),
+    catch(3
+	(http_open(Url, In,
+		   [ method(get),                
+		     request_header('Content-Type'='application/json'),
+		     request_header(accept='*/*'),		
+		     cert_verify_hook(cert_accept_any),
+		     status_code(StatusCode)
+		   ]),
+	 json_read(In, json(JSON)),
+	 Message = JSON.message),
+	_Err,
+	(Message = [], StatusCode = 500)).
 
-setup_q(Query,Out) :-
+%% process_query(Query,Results) :-
+%%     setup_call_cleanup(
+%% 	setup_q(Query,Out),
+%% 	read_lines(Out,Results),
+%% 	cleanup_q(Out)
+%%     ).
 
-    process_create(path(python3),
-	   [
-		       'project_driver.py',
-		       'engine',
-		       './src/showcases/engineP/static', 
-		       Query
-		   ],
-		   [stdout(pipe(Out))]).
+%% setup_q(Query,Out) :-
 
-cleanup_q(Out) :-
-    close(Out).
+%%     process_create(path(python3),
+%% 	   [
+%% 		       'project_driver.py',
+%% 		       'engine',
+%% 		       './src/showcases/engineP/static', 
+%% 		       Query
+%% 		   ],
+%% 		   [stdout(pipe(Out))]).
+
+%% cleanup_q(Out) :-
+%%     close(Out).
 
 
-read_lines(Out, Lines) :-
-    read_string(Out,_,Str_input),
-    split_string(Str_input, "\n", "\r", Lines).
+%% read_lines(Out, Lines) :-
+%%     read_string(Out,_,Str_input),
+%%     split_string(Str_input, "\n", "\r", Lines).
 
 
 format_results([],[]).

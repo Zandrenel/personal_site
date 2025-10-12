@@ -6,6 +6,10 @@
 :- use_module(library(http/thread_httpd)).
 :- use_module(library(http/http_dispatch)).
 
+:- use_module(library(http/http_open)).
+:- use_module(library(http/http_json)).
+:- use_module(library(http/json)).
+
 :- use_module(library(http/js_write)).
 :- use_module(library(http/html_write)).
 :- use_module(library(http/html_head)).
