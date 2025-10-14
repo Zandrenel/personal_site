@@ -90,7 +90,7 @@ process_query(Query, Message, StatusCode):-
 		path(Path)
 	      ]),
     write(Url),
-    catch(3
+    catch(
 	(http_open(Url, In,
 		   [ method(get),                
 		     request_header('Content-Type'='application/json'),
