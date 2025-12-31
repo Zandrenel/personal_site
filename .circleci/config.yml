@@ -1,0 +1,24 @@
+version: 2.1
+workflows:
+  testing:
+    jobs:
+      - runner-test
+  deploy:
+    jobs:
+      - local_deploy
+
+jobs:
+  runner-test:
+    machine: true
+    resource_class: righteousfruitpi/rasberry
+    steps:
+      - run: echo "Hi I'm on Runners!"
+  local_deploy:
+    machine: true
+    resource_class: ss/ss
+    steps:
+      - checkout:
+      - run:
+      	name: Local Deployment
+	command: systemctl restart site
+    
