@@ -12,13 +12,13 @@ jobs:
       image: ubuntu-2204:2023.07.2
     steps:
       - run:
-    name: Plan a deploy
-    command: |
-      circleci run release plan \
-        --environment-name="<environment-name>" \
-        --component-name="<component-name>" \
-        --target-version="<some-version-name>"
-# Your job here doing the actual deployment
+          name: Plan a deploy
+          command: |
+            circleci run release plan \
+            --environment-name="<environment-name>" \
+            --component-name="<component-name>" \
+            --target-version="<some-version-name>"
+      # Your job here doing the actual deployment
       - run:
           name: Deploy Over SSH
           command: |
