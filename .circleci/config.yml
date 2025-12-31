@@ -19,6 +19,6 @@ jobs:
     steps:
       - checkout:
       - run:
-      	name: Local Deployment
-	command: systemctl restart site
+        name: Local Deployment
+        command: systemctl restart site
     
