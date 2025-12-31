@@ -1,7 +1,5 @@
 version: 2.1
 
-
-
 jobs:
   runner-test:
     machine: true
@@ -31,7 +29,6 @@ jobs:
           name: Update planned deploy to FAILED
           command: circleci run release update --status=FAILED 
           when: on_fail
-
 
 workflows:
   testing:
