@@ -3,7 +3,6 @@ version: 2.1
 jobs:
   runner-test:
     machine: true
-    resource_class: righteousfruitpi/rasberry
     steps:
       - run: echo "Hi I'm on Runners!"
   ssh_deploy:
