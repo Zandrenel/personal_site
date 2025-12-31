@@ -15,9 +15,9 @@ jobs:
           name: Plan a deploy
           command: |
             circleci run release plan \
-            --environment-name="<environment-name>" \
-            --component-name="<component-name>" \
-            --target-version="<some-version-name>"
+            --environment-name="pi deployment" \
+            --component-name="first" \
+            --target-version="1.0.0"
       # Your job here doing the actual deployment
       - run:
           name: Deploy Over SSH
