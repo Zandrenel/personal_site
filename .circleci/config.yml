@@ -16,8 +16,8 @@ jobs:
             name: Deploy Over SSH
             command: |
               ssh $SSH_USER@$SSH_HOST "cd /var/www/personal_site && git pull && systemctl restart site"
-	  - run:
-    	      name: Plan a deploy
+            - run:
+              name: Plan a deploy
               command: |
               circleci run release plan \
                 --environment-name="Pi Deployment" \
