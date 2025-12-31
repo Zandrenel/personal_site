@@ -28,7 +28,7 @@ jobs:
       - run:
           name: Update planned deploy to FAILED
           command: circleci run release update --status=FAILED 
-          when: on_fail
+          when: on_fail	    
 
 workflows:
   testing:
@@ -39,4 +39,4 @@ workflows:
       - ssh_deploy:
          filters:
            branches:
-             only: main # only deploy on the main branch
+             only: master # only deploy on the main branch
