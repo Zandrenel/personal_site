@@ -14,7 +14,7 @@ jobs:
           command: |
             circleci run release plan \
             --environment-name="pi deployment" \
-            --component-name="first" \
+            --component-name="personal_site" \
             --target-version="1.0.0"
       # Your job here doing the actual deployment
       - run:
