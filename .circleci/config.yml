@@ -7,10 +7,12 @@ jobs:
     steps:
       - checkout
       - run:
-          - name: "Install swipl"
-          - command: |
-          "sudo apt-get install software-properties-common && sudo apt-add-repository 'ppa:swi-prolog/stable' && sudo apt-get update && sudo apt-get install swi-prolog"
-
+          name: Install SWI-Prolog
+          command: |
+            sudo apt-get update && sudo apt-get install -y software-properties-common
+            sudo apt-add-repository -y ppa:swi-prolog/stable
+            sudo apt-get update
+            sudo apt-get install -y swi-prolog
 
   ssh_deploy:
     machine:
