@@ -74,6 +74,8 @@ format_tags([H|T1],[span([class([tag])],[H])|T2]):-
 format_ingredients([],[]).
 format_ingredients([ingredient(Name,cups(Quantity))|T1],[li([class([ingredient])],[Quantity,' cups of ',Name])|T2]):-
     format_ingredients(T1,T2).
+format_ingredients([ingredient(Name,pounds(Quantity))|T1],[li([class([ingredient])],[Quantity,' lbs of ',Name])|T2]):-
+    format_ingredients(T1,T2).
 format_ingredients([ingredient(Name,Quantity)|T1],[li([class([ingredient])],[Quantity,' ',Name])|T2]):-
     format_ingredients(T1,T2).
 
@@ -112,6 +114,20 @@ recipe('Breaded Veal',
 	   'Drizzle the veal slices with olive oil.',
 	   'Bake until crispy, flip at some point.',
 	   'Either add tomato sauce and cheese for veal parmesean or add to pasta or serve however else preferred.'
+       ]).
+
+recipe('Meatloaf',
+       'Italia Rossi',
+       [meat, italian, oven, family],
+       2,
+       [ingredient('Big 3 meat mixture(Veal, Beef, Pork)' ,pounds(1)),ingredient('Blended Vegtables (any)',cups(1)), ingredient('eggs',2), ingredient('hardboiled eggs',3), ingredient('Bread in milk or breadcrumbs depending on dryness',1),ingredient(caicotta,cup(1))],
+       [
+	   'Preheat the oven to 400 degrees farenheit.',
+	   'Choose your vegtables, some good choices are onions, garlic, celery, tomatoes, then blend them up.',
+	   'Add your meat mixture + any spices + your vegtables, the 2 eggs, mix',
+	   'Add in the cheese to your mixture, then depending on moisture add in bread soaked in milk or breadcrumbs until its stiffer',
+	   'Add to your loafpan, you may put 3 hardboiled eggs in the middle of your meat in the loafpan.',
+	   'Add to the oven then bake until brown and crispy, likely 20-ish minutes or so, maybe more.'
        ]).
 
 
