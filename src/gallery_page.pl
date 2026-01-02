@@ -1,4 +1,4 @@
-:- module(gallery_page,[gallery/1, gallery/2]).
+:- module(gallery_page,[gallery/1, gallery/2, gallery_tests/0]).
 
 :- dynamic
        image/3.
@@ -37,7 +37,6 @@ gallery(_IMG,Request) :-
     http_redirect(moved, root(gallery),Request).
 
 
-
 image(Img,Link,Previous,Next):-
     image(Previous,_Plink,Img),
     image(Img,Link,Next),
@@ -50,10 +49,7 @@ image(Img,Link,Previous,none):-
     image(Img,Link,_Next).
 image(Img,Link,none,none):-
     image(Img,Link,_Next).
-        
-    
-
-
+            
 % Helper methods for the gallery
 
 format_imgs([],[]).
@@ -111,6 +107,13 @@ img_diff([H|T],S1,[H|T2]):-
 
 display_gallery -->
     {
+	get_formatted_imgs(F)
+    },
+    html(
+	div(id(display),F)
+    ).
+
+get_formatted_imgs(F) :-
 	directory_files('./static/gallery/fullsize',F01),
 	delete(F01,'.',F02),
 	delete(F02,'..',F0),
@@ -122,11 +125,19 @@ display_gallery -->
 	img_diff(Stri0,Stri1,Diff),
 	maplist(convert_to_thumbnail,Diff),
 	format_imgs(Stri0,F1),
-	phrase(reverse_list(F1), F)
-    },
-    html(
-	div(id(display),F)
-    ).
+	phrase(reverse_list(F1), F).
+
+gallery_tests :-
+    get_formatted_imgs(F),
+    test_img_format(F),
+    write('Gallery Tests Succeeded').
+
+test_img_format([]).
+test_img_format([div(a([href=_],
+		       img([class(gallery_image),
+			    src(_),
+			    alt=_])))|T]):- test_img_format(T).
+
 
 convert_to_thumbnail(Img):-
     format(atom(Thumbnail), './static/gallery/thumbnail/~s-thumbnail.jpg', [Img]),

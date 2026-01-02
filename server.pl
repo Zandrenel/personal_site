@@ -1,19 +1,23 @@
 
 %:- use_module(library(http/http_unix_daemon)).
 
+:- use_module(library(http/http_open)).
+:- use_module(library(http/http_json)).
+:- use_module(library(json_convert)).
+:- use_module(library(json)).
+
 :- use_module(library(http/http_error)).
 :- use_module(library(http/http_files)).
 :- use_module(library(http/thread_httpd)).
-:- use_module(library(http/http_dispatch)).
-
-:- use_module(library(http/http_open)).
-:- use_module(library(http/http_json)).
-:- use_module(library(http/json)).
-
 :- use_module(library(http/js_write)).
 :- use_module(library(http/html_write)).
 :- use_module(library(http/html_head)).
 :- use_module(library(http/http_path)).
+:- use_module(library(http/http_session)).
+:- use_module(library(http/http_dispatch)).
+:- use_module(library(http/http_header)).
+:- use_module(library(http/http_client)).
+
 :- use_module(library(settings)).
 
 :- use_module(library(http/http_ssl_plugin)).
@@ -22,6 +26,7 @@
 :- use_module(src/gallery_page).
 :- use_module(src/home).
 :- use_module(src/blog).
+:- use_module(src/auth).
 :- use_module(src/projects).
 :- use_module(src/showcases/search_engine).
 :- use_module(src/showcases/image_denoiser).
@@ -54,13 +59,10 @@
 user:file_search_path(gallery_images, swi_site(gallery_images)).
 
 
-
 http:location(static, '/s', []).
 http:location(files, '/f', []).
 http:location(gallery_images, static('gallery'), []).
 http:location(images, static('imgs'), []).
-
-
 
 
 serve_files(Request) :-
@@ -77,12 +79,11 @@ get_static(Request) :-
 get_static(Request) :-
 	  http_404([], Request).
 
-
-
 :- setting(http:served_file_extensions,
 	   list(atom),
 	   [ html, gif, png, jpeg, jpg, css, js, tgz, exe, c, zip ],
 	   'List of extensions that are served as plain files').
+
 
 % Resource Files
 :- html_resource(static('styles.css'), []).
@@ -91,6 +92,7 @@ get_static(Request) :-
 		 [ virtual(true)]).
 
 % URL handlers
+% HTML Pages
 :- http_handler(root(.), home_page, []).
 :- http_handler(root(gallery), gallery, []).
 :- http_handler(root(gallery/IMG), gallery(IMG), []).
@@ -105,6 +107,12 @@ get_static(Request) :-
 :- http_handler(root(hobbies/mtg), mtg, [prefix]).
 :- http_handler(root(hobbies/cooking), cooking, [prefix]).
 :- http_handler(root(hobbies/plants), plants, [prefix]).
+
+% REST API Routes
+:- http_handler(root(login), login, [prefix]). % POST
+:- http_handler(root(logout), logout, [prefix]). % GET
+
+% FIle Serving Locations
 :- http_handler(files(.), serve_files, [prefix]).
 :- http_handler(static(.), get_static, [prefix]).
 
@@ -130,3 +138,8 @@ server(Port,Options) :-
     member(docker,Options) -> thread_get_message(_Message); true.
 
 
+% Tests
+
+tests :-
+    gallery_tests,
+    nl,halt.

@@ -2,7 +2,8 @@
 	      nav_bar/2,
 	      footer/2,
 	      in_construction/2]).
-:- use_module(src/color).
+:- use_module(color).
+:- use_module(auth).
 % ---------Navigation Bar---------
 
 nav_bar -->
@@ -15,6 +16,7 @@ nav_bar -->
 	      id(top_nav_bar),[
 		  div(id="navigationbar",[
 			  div(TopButtons),
+			  div(id(login),\login_dialog),
 			  div(id(themeSelector),\selector)])
 	  ])]).
 

@@ -1,10 +1,13 @@
 version: 2.1
 
 jobs:
-  runner-test:
-    machine: true
+  run-tests:
+    docker:
+      - image: cimg/base:2023.03
     steps:
-      - run: echo "Hi I'm on Runners!"
+      - checkout
+      - run: apt-get swipl
+      - run: swipl -g "tests." server.pl
   ssh_deploy:
     machine:
       image: default

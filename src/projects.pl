@@ -5,7 +5,7 @@
 	      projects/1
 	  ]).
 
-:- use_module(src/color).
+:- use_module(color).
 
 
 projects(_Request) :-
