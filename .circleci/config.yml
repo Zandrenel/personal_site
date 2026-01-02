@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           - name: "Install swipl"
-	  - command: |
+          - command: |
           sudo apt-get install software-properties-common |
           sudo apt-add-repository ppa:swi-prolog/stable |
           sudo apt-get update |
