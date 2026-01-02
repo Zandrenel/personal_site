@@ -39,10 +39,17 @@ jobs:
 workflows:
   testing:
     jobs:
-      - run-tests
-  deploy:
+      - run-tests:
+          filters:
+            branches:
+              ignore: master
+    
+  test-deploy:
     jobs:
+      - run-tests
       - ssh_deploy:
+         requires:
+           - run-tests
          filters:
            branches:
              only: master # only deploy on the main branch
