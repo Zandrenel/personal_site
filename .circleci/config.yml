@@ -15,13 +15,13 @@ jobs:
             sudo apt-get install -y swi-prolog
       - run:
           name: Check env
-	  command: |
-	  ls -la
-	  swipl --version
+          command: |
+          ls -la
+          swipl --version
       - run:
           name: Run Tests
           command: |
-	  swipl -g "tests." server.pl
+          swipl -g "tests." server.pl
 	  
 
   ssh_deploy:
