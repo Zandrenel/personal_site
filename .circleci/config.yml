@@ -39,7 +39,7 @@ jobs:
 workflows:
   testing:
     jobs:
-      - runner-test
+      - run-tests
   deploy:
     jobs:
       - ssh_deploy:
