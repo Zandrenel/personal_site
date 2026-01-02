@@ -16,12 +16,12 @@ jobs:
       - run:
           name: Check env
           command: |
-          ls -la
-          swipl --version
+            ls -la
+            swipl --version
       - run:
           name: Run Tests
           command: |
-          swipl -g "tests." server.pl
+            swipl -g "tests." server.pl
 	  
 
   ssh_deploy:
