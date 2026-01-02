@@ -6,8 +6,15 @@ jobs:
       - image: cimg/base:2023.03
     steps:
       - checkout
-      - run: apt-get install swipl
-      - run: swipl -g "tests." server.pl
+      - run:
+          - name: "Install swipl"
+	  - command: |
+          sudo apt-get install software-properties-common |
+          sudo apt-add-repository ppa:swi-prolog/stable |
+          sudo apt-get update |
+          sudo apt-get install swi-prolog
+
+
   ssh_deploy:
     machine:
       image: default
