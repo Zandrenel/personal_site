@@ -7,9 +7,9 @@
 % user(username, password).
 user('alek','pass').
 
-login(Request) :-
+login(_Request) :-
     http_session_data(session_user(Username,_Password)), 
-    format('Content-type: application/json~n~n{"message":"Already Logged in as ~w."}', [Username]).
+    format('Content-type: application/json~n~n{"code":200, "message":"Already Logged in as ~w."}', [Username]).
 login(Request) :-
     memberchk(method(post), Request),
     % Get required Request body data
@@ -22,10 +22,10 @@ login(Request) :-
     http_session_assert(session_user(Username,Password)),
     http_session_data(session_user(Username,Password)),
     http_session_id(Session),
-    format('Content-type: application/json~n~n{"username":"~w","password":"~w","message":"Loggin Successfully", "session":"~w"}', [Username, Password, Session]).
+    format('Content-type: application/json~n~n{"code":200, "username":"~w","password":"~w","message":"Loggin Successfully", "session":"~w"}', [Username, Password, Session]).
 login(_Request) :-
     format('Status: 400~n'),
-    reply_json('{ "data":{"error": "Failed Login"}}').
+    reply_json('{"code":400, "data":{"error": "Failed Login"}}').
 
 logout(Request) :-
     memberchk(method(get), Request),
@@ -37,21 +37,17 @@ logout(_) :-
 
 login_dialog -->
     {
-	http_session_data(session_user(User,_Pass)) -> U = User; U = '' 
+	http_session_data(session_user(_User,_Pass)) -> U = button([id('login-button'),onclick('logout()')],'Logout');U = button([id('login-button'),onclick('openDialog()')],'Login')
     },
     html([
 		div([id('login-div')],[
-			button([id('login-button'),onclick('openDialog()')],'Login'),
-			button([id('login-button'),onclick('logout()')],'Logout')
+			U
 		    ]),
 				
       \js_script({|javascript(_)||
 		  async function login(){
 
 		    const reqHeaders = new Headers();
-
-		    // A cached response is okay unless it's more than a week old
-		    reqHeaders.set("Cache-Control", "max-age=604800");
 
 		    const username = document.getElementById('username').value
 		    const password = document.getElementById('password').value
@@ -71,9 +67,12 @@ login_dialog -->
 		        throw new Error(`Response status: ${response.status}`);
 		      }
 		    response.json().then(
-			(response) => {
+					(response) => {
+					    console.log(response);
+
 			       if(response.code === 200){
 		    	         console.log(response);
+				 toggleLoginState();
 			    	 closeLoginDialog();
 			       } else if( response.code === 400) {
 			         console.log('error',response);
@@ -102,32 +101,71 @@ login_dialog -->
 
 		    const response = await fetch(req);
 		    response.json().then(
-			(text) => { 
+			(text) => {
+			       toggleLoginState();
 		    	       console.log(text);
 			})
 			
 		  }
-		  
+		  function toggleLoginState() {
+		   	const loginButton = document.getElementById('login-button');
+			console.log(loginButton);
+			if(loginButton.innerHTML === 'Login'){
+			  loginButton.innerHTML = 'Logout';
+			  loginButton.onclick = function() { logout(); }
+			} else {
+			  loginButton.innerHTML = 'Login';
+			  loginButton.onclick = function() { openDialog(); }
+			}			  
+		  }k
+
 		  function closeLoginDialog() {
 		  	const dialogContainer = document.getElementById('dialog-container');
+			document.body.style.overflow = '';
 		  	dialogContainer.remove();
+		  }
+
+		  function togglePasswordVisibility() {
+		  	const password = document.getElementById('password');
+		  	const vis = document.getElementById('password-visibility-button');	
+		  	if( password.type === 'password'){
+			  password.type = 'text';
+			  vis.innerHTML = 'I';
+			} else {
+			  password.type = 'password';
+			  vis.innerHTML = 'O';
+			}
 		  }
 		  
 		  function openDialog() { 
-		    console.log('Starting dialog open');
+		    console.log('Starting dialog open');		    
 
 		    // Initialize dialog parts
 		    const dialogContainer = document.createElement('div');
 		    const dialog = document.createElement('div');
 		    const content = `
-		    	      <button onclick='closeLoginDialog()'>X</button>
+		    	      <div id='dialog-header'>
+			      	<h2 id='dialog-header-text' >Login</h2>
+				<div id='dialog-close-button-container'>
+		    	          <button id='dialog-close-button' onclick='closeLoginDialog()'>X</button>
+				</div>
+			      </div>
+			      <div id='dialog-body-content'>
                               <form id='login-form' action='javascript:;' onsubmit='login()'>
-                                <input id='username' class='login-input' type='text'>
-                                <input id='password' class='login-input' type='text'>
-                                <button type='submit'>Login Test</button>
+			        <div id='username-container' class='formfield-container'>
+                                  <input placeholder='username' id='username' class='login-input' type='text'>
+				</div>
+				<div id='password-container' class='formfield-container'>
+                                  <input placeholder='password' type='password' id='password' class='login-input' type='text'><button id='password-visibility-button' type='button' onclick="togglePasswordVisibility()">I</button>
+				</div>
+				<div class='formfield-container'>
+                                 <button type='submit'>Login Test</button>
+				</div>
                               </form>
+			      </div>
                               `;
 		    const main = document.getElementById("content");
+		    document.body.style.overflow = 'hidden';		    
 
 		    // Setup the IDs
 		    dialogContainer.id = 'dialog-container';

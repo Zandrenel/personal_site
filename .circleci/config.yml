@@ -33,7 +33,7 @@ jobs:
             circleci run release plan \
             --environment-name="pi deployment" \
             --component-name="personal_site" \
-            --target-version="1.0.0"
+            --target-version="1.0.1"
       # Your job here doing the actual deployment
       - add_ssh_keys:
           fingerprints:
