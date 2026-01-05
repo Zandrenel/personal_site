@@ -74,6 +74,7 @@ login_dialog -->
 		    	         console.log(response);
 				 toggleLoginState();
 			    	 closeLoginDialog();
+				 openSnackbar(`Logged in as ${response.username}.`);
 			       } else if( response.code === 400) {
 			         console.log('error',response);
 			       }
@@ -103,6 +104,7 @@ login_dialog -->
 		    response.json().then(
 			(text) => {
 			       toggleLoginState();
+			       openSnackbar('Logged out successfully.');
 		    	       console.log(text);
 			})
 			
@@ -117,7 +119,7 @@ login_dialog -->
 			  loginButton.innerHTML = 'Login';
 			  loginButton.onclick = function() { openDialog(); }
 			}			  
-		  }k
+		  }
 
 		  function closeLoginDialog() {
 		  	const dialogContainer = document.getElementById('dialog-container');
@@ -136,9 +138,29 @@ login_dialog -->
 			  vis.innerHTML = 'O';
 			}
 		  }
+
+		  function openSnackbar(text) {
 		  
-		  function openDialog() { 
-		    console.log('Starting dialog open');		    
+		    const snackbar = document.createElement('div');		  
+		    const content = text;
+		    
+		    snackbar.classList.add('snackbar-alert');
+		    snackbar.innerHTML = content;
+		    const main = document.getElementById("content");
+		    		    
+
+		    // create the actual div in the DOM
+		    document.body.insertBefore(snackbar, main);
+
+		    setTimeout(
+		    () => {
+		       snackbar.remove()
+		       },
+		       5000)
+		  
+		  }
+		  
+		  function openDialog() { 	    
 
 		    // Initialize dialog parts
 		    const dialogContainer = document.createElement('div');
