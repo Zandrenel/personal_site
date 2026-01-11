@@ -41,7 +41,7 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            ssh $SSH_USER@$SSH_HOST "cd /var/www/personal_site && echo '$SSH_PASS' | sudo -S git pull && echo '$SSH_PASS' | sudo -S systemctl restart site"
+            ssh $SSH_USER@$SSH_HOST "cd /var/www/personal_site && git pull && echo '$SSH_PASS' | sudo -S systemctl restart site"
       - run:
           name: Update a deploy to SUCCESS
           command: circleci run release update --status=SUCCESS 
