@@ -130,4 +130,25 @@ recipe('Meatloaf',
 	   'Add to the oven then bake until brown and crispy, likely 20-ish minutes or so, maybe more.'
        ]).
 
+recipe('Beef and Spinach',
+       'Lydia Saad',
+       ['family', meat, rice],
+       2,
+       [ingredient('beef' ,pounds('1/2')),
+	ingredient('spinach','2 bags'),
+	ingredient('onion',1),
+	ingredient('allspice','little'),
+	ingredient('tomato paste','a bit'),
+	ingredient('lime',1),
+	ingredient('pine nuts',cups('1/2'))],
+       [
+	   'Cut tails from each spinach then in half.',
+	   'Dice the onion.',
+	   'Cook the onion and beef together.',
+	   'Add in tomato paste to sautee it a little',
+	   'Add in the allspice.',
+	   'Add in the spinach, cook until wilted.',
+	   'Serve over white rice.'
+       ]).
+
 
