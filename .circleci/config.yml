@@ -3,28 +3,28 @@ version: 2.1
 jobs:
   run-tests:
     docker:
-      - image: cimg/base:2023.03
+      - image: swipl:stable
     steps:
       - checkout
-      - restore_cache:
-          name: Check Cache
-          keys:  
-            - v1-swi-cache
-      - run:
-          name: Install SWI-Prolog
-          command: |
-            sudo apt-get update && sudo apt-get install -y software-properties-common
-            sudo apt-add-repository -y ppa:swi-prolog/stable
-            sudo apt-get update
-            sudo apt-get install -y swi-prolog
-            sudo rm -rf /var/cache/apt/archives/partial/*
-      - save_cache:
-          name: Save Cache
-          key: v1-swi-cache  
-          paths:
-            - /var/cache/apt/archives
-            - /usr/bin/swipl
-            - /etc/apt/sources.list.d/swi-prolog-ubuntu-stable-jammy.list
+      # - restore_cache:
+      #     name: Check Cache
+      #     keys:  
+      #       - v1-swi-cache
+      # - run:
+      #     name: Install SWI-Prolog
+      #     command: |
+      #       sudo apt-get update && sudo apt-get install -y software-properties-common
+      #       sudo apt-add-repository -y ppa:swi-prolog/stable
+      #       sudo apt-get update
+      #       sudo apt-get install -y swi-prolog
+      #       sudo rm -rf /var/cache/apt/archives/partial/*
+      # - save_cache:
+      #     name: Save Cache
+      #     key: v1-swi-cache  
+      #     paths:
+      #       - /var/cache/apt/archives
+      #       - /usr/bin/swipl
+      #       - /etc/apt/sources.list.d/swi-prolog-ubuntu-stable-jammy.list
       - run:
           name: Check env
           command: |
