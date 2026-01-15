@@ -6,6 +6,10 @@ jobs:
       - image: cimg/base:2023.03
     steps:
       - checkout
+      - restore_cache:
+          name: Check Cache
+          keys  
+	   - v1-swi-cache
       - run:
           name: Install SWI-Prolog
           command: |
@@ -13,6 +17,12 @@ jobs:
             sudo apt-add-repository -y ppa:swi-prolog/stable
             sudo apt-get update
             sudo apt-get install -y swi-prolog
+	    sudo rm -rf /var/cache/apt/archives/partial/*
+      - save_cache:
+          name: Save Cache
+          key: v1-swi-cache  
+          paths:
+            - /var/cache/apt/archives
       - run:
           name: Check env
           command: |
