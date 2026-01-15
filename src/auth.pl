@@ -7,6 +7,12 @@
 % user(username, password).
 user('alek','pass').
 
+process_login(Username, Password) :-
+    % do whatever calls are needed to process the login, for now its basic,
+    % though it can be a call to other services or other predicates later
+    user(Username, Password),
+    http_session_assert(session_user(Username,Password)).
+
 login(_Request) :-
     http_session_data(session_user(Username,_Password)), 
     format('Content-type: application/json~n~n{"code":200, "message":"Already Logged in as ~w."}', [Username]).
@@ -17,9 +23,8 @@ login(Request) :-
     atom_json_dict(Data,Dict, [as(atom)]),
     atom_string(Username,Dict.username),
     atom_string(Password,Dict.password),
-    user(Username,Password),
-    % Assert the session data
-    http_session_assert(session_user(Username,Password)),
+    % Process the login, assert the session
+    process_login(Username,Password),
     http_session_data(session_user(Username,Password)),
     http_session_id(Session),
     format('Content-type: application/json~n~n{"code":200, "username":"~w","password":"~w","message":"Loggin Successfully", "session":"~w"}', [Username, Password, Session]).
@@ -105,7 +110,6 @@ login_dialog -->
 			(text) => {
 			       toggleLoginState();
 			       openSnackbar('Logged out successfully.');
-		    	       console.log(text);
 			})
 			
 		  }

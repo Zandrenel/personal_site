@@ -103,33 +103,6 @@ process_query(Query, Message, StatusCode):-
 	_Err,
 	(Message = [], StatusCode = 500)).
 
-%% process_query(Query,Results) :-
-%%     setup_call_cleanup(
-%% 	setup_q(Query,Out),
-%% 	read_lines(Out,Results),
-%% 	cleanup_q(Out)
-%%     ).
-
-%% setup_q(Query,Out) :-
-
-%%     process_create(path(python3),
-%% 	   [
-%% 		       'project_driver.py',
-%% 		       'engine',
-%% 		       './src/showcases/engineP/static', 
-%% 		       Query
-%% 		   ],
-%% 		   [stdout(pipe(Out))]).
-
-%% cleanup_q(Out) :-
-%%     close(Out).
-
-
-%% read_lines(Out, Lines) :-
-%%     read_string(Out,_,Str_input),
-%%     split_string(Str_input, "\n", "\r", Lines).
-
-
 format_results([],[]).
 format_results([H1|T1],[H2|T2]):-
     H2 = div(a([class(result),href=H1],H1)),
