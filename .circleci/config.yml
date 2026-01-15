@@ -23,6 +23,8 @@ jobs:
           key: v1-swi-cache  
           paths:
             - /var/cache/apt/archives
+	    - /usr/bin/swipl
+	    - /etc/apt/sources.list.d/swi-prolog-ubuntu-stable-jammy.list
       - run:
           name: Check env
           command: |
