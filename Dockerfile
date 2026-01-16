@@ -6,8 +6,7 @@ COPY . /app
 WORKDIR /app
 
 # Install ffmpeg
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
+RUN apt-get install -y --no-install-recommends \
     ffmpeg && \
     rm -rf /var/lib/apt/lists/*
 

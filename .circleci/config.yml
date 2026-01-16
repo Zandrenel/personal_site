@@ -9,7 +9,6 @@ jobs:
       - run:
           name: Download FFMPEG
           command: |
-            apt-get update && \
             apt-get install -y --no-install-recommends \
             ffmpeg && \
             rm -rf /var/lib/apt/lists/*
