@@ -5,6 +5,11 @@ FROM swipl:stable
 COPY . /app
 WORKDIR /app
 
+# Install ffmpeg
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    ffmpeg && \
+    rm -rf /var/lib/apt/lists/*
 
 # From the arg set a default port and mode
 ARG PORT=3030
@@ -14,6 +19,7 @@ ENV PORT=${PORT}
 ENV MODE=${MODE}
 # expose the port from the docker
 EXPOSE ${PORT}
+
 
 
 CMD swipl -g "server(${PORT},[${MODE},docker])" /app/server.pl
