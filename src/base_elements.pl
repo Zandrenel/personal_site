@@ -16,8 +16,9 @@ nav_bar -->
 	      id(top_nav_bar),[
 		  div(id="navigationbar",[
 			  div(TopButtons),
-			  div(id(login),\login_dialog),
-			  div(id(themeSelector),\selector)])
+			  div(id(themeSelector),\selector),
+			  div(id(login),\login_dialog)
+			  ])
 	  ])]).
 
 

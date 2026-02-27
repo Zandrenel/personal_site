@@ -1,26 +1,31 @@
 :root {
-        --base1: #222222;
-    --base2: #555555;
-    --base3: #d1d1d1;
-    --base4: #eeeeee;
-    --base5: #aabbbb;
+    --base1: #000000;
+    --base2: #FF2DD1;
+    --base3: #9929EA;
+    --base4: #FAEB92;
+    --base5: #FF5FCF;
     --base6: #ffffff;
-    --base7: #333333;
-    --base8: #888888;
+    --base7: #0046FF;
+    --base8: #63C8FF;
+    --nav1:  #000000; /* Navbar */
+    --nav2:  #63C8FF; /* Hover nav text */
+    --res1:  #9929EA; /* Search Result  */
+    --res2:  #B6F500; /* Search Result Hover */
+    --font: sans-serif;
 }
 
 [data-theme="ArtsAndCrafts"] { 
     --base1: #000000; /* Default background */
     --base2: #A06AB4; /* */
-    --base3: #FFD743; /* Header/Footer Text hover-nav-color*/base
-		      --nav1:  #E56997; /* Navbar */
+    --base3: #FFD743; /* Header/Footer Text hover-nav-color*/
+    --nav1:  #E56997; /* Navbar */
     --nav2:  #ffffff; /* Hover nav text */
     --res1:  #8D538D; /* Search Result  */
     --res2:  #8D538D; /* Search Result Hover */
 }
 
 [data-theme="MeltedIceCream"] {
-        --base1: #000000; /* default Text Color */
+    --base1: #000000; /* default Text Color */
     --base2: #5BB0BA; /* Footer and Background */
     --base3: #F6C8CC; /* Body  & Footer Text &  hover-nav-color */
     --nav1:  #C15B78; /* Navbar */
@@ -72,9 +77,19 @@
     --res2:  #8D538D; /* Search Result Hover */
 }
 
+[data-theme="noName"] {
+    --base1: rgb(18, 18, 18); /* Default background */
+    --base2: rgb(18, 18, 18); /* */
+    --base3: rgb(251, 222, 0); /* Header/Footer Text hover-nav-color*/
+    --nav1:  rgb(18, 18, 18); /* Navbar */
+    --nav2:  rgb(160, 264, 0); /* Hover nav text */
+    --res1:  rgb(251, 222, 0); /* Search Result  */
+    --res2:  rgb(251, 222, 0); /* Search Result Hover */
+}
 
 body {
     background-color: var(--base2);
+    font-family: var(--font);
 }
 
 #footer {
@@ -90,11 +105,19 @@ body {
 
 
 #main {
+
     color: var(--base1);
     background-color: var(--base3);
 }
 
+.home-nav {
+    background-color:var(--base2);
+    color: var(--base3);
+}
 
+#dialog-body{
+    background-color:var(--base2);
+}
 
 /* The UL around the list */
 #navigationbar {
@@ -125,6 +148,22 @@ body {
     background-color: var(--nav2);
 }
 
+/* Snackbar styling */
+
+.snackbar-alert {    
+    background-color: var(--base2);
+}
+
+/* Login Styling */
+
+
+#login-button {
+    background: var(--res1);
+}
+
+#login-button:hover {
+    background: var(--res2);
+}
 
 /* Gallery page specific styling */
 

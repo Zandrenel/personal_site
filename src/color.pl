@@ -3,12 +3,15 @@
 	      selector/2
 	      ]).
 
-colors('PowerUp','Power Up').
+colors('','Default').
+colors('noName','No Name').
 colors('ArtsAndCrafts','Arts and Crafts').
 colors('MeltedIceCream','Melted Ice Cream').
-colors('SunKissedRock','Sunkissed Rock').
 colors('MidnightSwim','Midnight Swim').
+colors('PowerUp','Power Up').
+colors('SunKissedRock','Sunkissed Rock').
 colors('twilightStreet','Twilight Street').
+
 
 
 
