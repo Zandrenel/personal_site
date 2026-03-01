@@ -82,8 +82,9 @@ home_page(_Request) :-
 				    ]),
 			    section([id('skills-section'),
 				     class(['skills-section'])],
-				    [\languages,
-				     \language_header_blurb
+				    [
+					\language_header_blurb,
+					\languages
 				     %% \skills
 			    %% 	    ]),
 			    %% section([class(['home-section'])],[
@@ -126,37 +127,34 @@ language_header_blurb -->
 		    ])]).
 languages -->
     html([
-	 	div([class([row])],[
-			h3([class(lang_header)],'Languages'),
-			div([id(rotator)],
-			    div([class([row])],[
-				    div([id(prolog),class(lang_div)],[img([class(lang_img),src('/s/logos/Prolog.png')])]),
-				    div([id(java),class(lang_div)],[img([class(lang_img),src('/s/logos/Java.svg')])]),
-				    div([id(js),class(lang_div)],[img([class(lang_img),src('/s/logos/JS.svg')])]),
-				    div([id(ts),class(lang_div)],[img([class(lang_img),src('/s/logos/TypeScript.png')])]),
-				    div([id(python),class(lang_div)],[img([class(lang_img),src('/s/logos/Python.svg')])]),
-				    div([id(cplusplus),class(lang_div)],[img([class(lang_img),src('/s/logos/CPlusPlus.svg')])]),
-				    div([id(lisp),class(lang_div)],[img([class(lang_img),src('/s/logos/lisp.png')])]),
-				    div([id(bash),class(lang_div)],[img([class(lang_img),src('/s/logos/bash.png')])]),
-				    div([id(powershell),class(lang_div)],[img([class(lang_img),src('/s/logos/powershell.png')])]),
-				    div([class(lang_div)],[img([class(lang_img),src('/s/logos/angular.png')])]),
-				    div([class(lang_div)],[img([class(lang_img),src('/s/logos/nodejs.png')])]),
-				    div([class(lang_div)],[img([class(lang_img),src('/s/logos/RxJS.png')])]),
-				    div([class(lang_div)],[img([class(lang_img),src('/s/logos/flask.png')])]),
-				    div([class(lang_div)],[img([class(lang_img),src('/s/logos/sklearn.svg')])]),
-				    div([class(lang_div)],[img([class(lang_img),src('/s/logos/Java.svg')])]),
-				    div([class(lang_div)],[img([class(lang_img),src('/s/logos/OpenCV.png')])]),
-				    div([class(lang_div)],[img([class(lang_img),src('/s/logos/nltk.webp')])]),
-				    div([class(lang_div)],[img([class(lang_img),src('/s/logos/opengl_logo.png')])]),
-				    div([class(lang_div)],[img([class(lang_img),src('/s/logos/html.png')])]),
-				    div([class(lang_div)],[img([class(lang_img),src('/s/logos/css.svg')])]),
-				    div([class(lang_div)],[img([class(lang_img),src('/s/logos/bootstrap.png')])]),
-				    div([class(lang_div)],[img([class(lang_img),src('/s/logos/markdown.png')])]),
-				    div([class(lang_div)],[img([class(lang_img),src('/s/logos/latex.png')])]),
-				    div([class(lang_div)],[img([class(lang_img),src('/s/logos/org-mode.png')])])		  
-				])
-			   )
-		    ])
+		div([id(rotator)],
+		    div([class([row])],[
+			    div([id(prolog),class(lang_div)],[img([class(lang_img),src('/s/logos/Prolog.png')])]),
+			    div([id(java),class(lang_div)],[img([class(lang_img),src('/s/logos/Java.svg')])]),
+			    div([id(js),class(lang_div)],[img([class(lang_img),src('/s/logos/JS.svg')])]),
+			    div([id(ts),class(lang_div)],[img([class(lang_img),src('/s/logos/TypeScript.png')])]),
+			    div([id(python),class(lang_div)],[img([class(lang_img),src('/s/logos/Python.svg')])]),
+			    div([id(cplusplus),class(lang_div)],[img([class(lang_img),src('/s/logos/CPlusPlus.svg')])]),
+			    div([id(lisp),class(lang_div)],[img([class(lang_img),src('/s/logos/lisp.png')])]),
+			    div([id(bash),class(lang_div)],[img([class(lang_img),src('/s/logos/bash.png')])]),
+			    div([id(powershell),class(lang_div)],[img([class(lang_img),src('/s/logos/powershell.png')])]),
+			    div([class(lang_div)],[img([class(lang_img),src('/s/logos/angular.png')])]),
+			    div([class(lang_div)],[img([class(lang_img),src('/s/logos/nodejs.png')])]),
+			    div([class(lang_div)],[img([class(lang_img),src('/s/logos/RxJS.png')])]),
+			    div([class(lang_div)],[img([class(lang_img),src('/s/logos/flask.png')])]),
+			    div([class(lang_div)],[img([class(lang_img),src('/s/logos/sklearn.svg')])]),
+			    div([class(lang_div)],[img([class(lang_img),src('/s/logos/Java.svg')])]),
+			    div([class(lang_div)],[img([class(lang_img),src('/s/logos/OpenCV.png')])]),
+			    div([class(lang_div)],[img([class(lang_img),src('/s/logos/nltk.webp')])]),
+			    div([class(lang_div)],[img([class(lang_img),src('/s/logos/opengl_logo.png')])]),
+			    div([class(lang_div)],[img([class(lang_img),src('/s/logos/html.png')])]),
+			    div([class(lang_div)],[img([class(lang_img),src('/s/logos/css.svg')])]),
+			    div([class(lang_div)],[img([class(lang_img),src('/s/logos/bootstrap.png')])]),
+			    div([class(lang_div)],[img([class(lang_img),src('/s/logos/markdown.png')])]),
+			    div([class(lang_div)],[img([class(lang_img),src('/s/logos/latex.png')])]),
+			    div([class(lang_div)],[img([class(lang_img),src('/s/logos/org-mode.png')])])		  
+			])
+		   )
 	    ]).
 
 % Not used for now but we'll see

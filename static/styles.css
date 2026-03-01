@@ -2,6 +2,7 @@
 
 body {
     margin: 0;
+    font-size: clamp(10px, 2vw, 4rem);
 }
 
 #header {
@@ -47,6 +48,7 @@ body {
     padding:5px;    
     x:50;
     top:40%;
+    z-index:1;
 } 
 
 .home-nav-a {
@@ -66,7 +68,7 @@ body {
     font-family: filson-pro;
     font-weight: 800;
     letter-spacing: 0;
-    font-size: clamp(34px, 31.1830985915px + .7511737089vw, 2.625rem);
+    font-size: clamp(34px, 3vw, 4rem);
     line-height: 1.1904761905;
     display: flex;
     align-items: center;
@@ -74,6 +76,7 @@ body {
 
 .home-section-body {
     font-family: filson-pro;
+    font-size: clamp(10px, 2vw, 4rem);
     letter-spacing: 0;
     line-height: 1;
     display: flex;
@@ -352,20 +355,19 @@ body {
 
 #main {
     /* justify-content: center; */
-    width:100% !important;
     margin: auto;
     padding: 15px;
-    padding-left:20%;
-    padding-right:20%;
+    padding-left: clamp(10%, 15%, 20%); /* Dynamically adjusts padding */
+    padding-right: clamp(10%, 15%, 20%); /* Dynamically adjusts padding */
     opacity:1;
-    z-index:-1;
+    z-index:0;
 }
 
 .home-section {
     width:100%;
     display:grid;
     justify-content: center;
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2vw, 1.5rem);
     vertical-align: middle;
 }
 
@@ -373,18 +375,6 @@ body {
 
 @keyframes rotations {
   to { transform: rotate(360deg) }
-}
-
-#language_header_blurb {
-    left: 42%;
-    position: absolute;
-    top: 353%;
-    width: 200px;
-    font-family: filson-pro;
-    font-weight: 800;
-    letter-spacing: 0;
-    font-size: 30PX;
-    line-height: 1.190476;
 }
 
 .skills-section {
@@ -395,6 +385,7 @@ body {
 }
 
 .lang_header {
+    
     text-align:center;
 }
 
@@ -413,6 +404,19 @@ body {
     height: 50px;   
     animation: rotations 40s linear infinite;
     animation-direction: reverse;
+}
+
+
+#language_header_blurb {
+    position: relative;
+    top: 55%;
+    left: 35%;
+    width:275px;
+    font-family: filson-pro;
+    font-weight: 800;
+    letter-spacing: 0;
+    font-size: 30PX;
+    line-height: 1.190476;
 }
 
 /* 
@@ -467,11 +471,12 @@ body {
     to { transform: rotate(360deg); }
 }
 
+
+
 #rotator {
   position: relative;
   height: 25rem;
   animation: rotations 40s linear infinite;
-  margin: 3rem;  
 }
 
 /* Gallery page specific styling */
