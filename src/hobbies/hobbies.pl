@@ -25,6 +25,6 @@ hobbies(_Request) :-
 placeholder -->
     html(
 	ul([
-		  li(a([href='/hobbies/cooking'],[engine]))
+		  li(a([href='/hobbies/cooking'],[cooking]))
 	      ])
     ).

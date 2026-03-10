@@ -353,8 +353,13 @@ body {
     opadding:0;
 }
 
+/* Francisation Styles */
+.option-btn:hover { transform: translateY(-2px); }
+.progress-bar { transition: width 0.3s ease; }
+
 #main {
     /* justify-content: center; */
+    width:100%;
     min-height: 100vh;
     margin: auto;
     padding: 15px;
@@ -370,6 +375,7 @@ body {
     justify-content: center;
     font-size: clamp(1rem, 2vw, 1.5rem);
     vertical-align: middle;
+    z-index:0;
 }
 
 /* Skills Stuff */
@@ -383,6 +389,7 @@ body {
     width:100%;
     justify-content: center;
     vertical-align: middle;
+    z-index:0;
 }
 
 .lang_header {
