@@ -24,5 +24,7 @@ projects(_Request) :-
 
 placeholder -->
     html(
-	p("This text will eventually change and there will be a display of my projects in progress and completed with links eventually.")
-	).
+	ul([
+		  li(a([href='/projects/engine'],[engine]))
+	      ])
+    ).

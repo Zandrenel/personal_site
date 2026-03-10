@@ -12,15 +12,19 @@ hobbies(_Request) :-
 	    \html_requires(static('styles.css')),
 	    \html_requires(static('themes.css')),
 	    \nav_bar,
-	    div(id(content),
+	    div(id(main),
 		[
-		    div(id(main),
-			[
-			 \in_construction
-			])
+		    \placeholder
 		]),
 	    \footer
 	]).
 
 
 
+
+placeholder -->
+    html(
+	ul([
+		  li(a([href='/hobbies/cooking'],[engine]))
+	      ])
+    ).

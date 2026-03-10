@@ -355,6 +355,7 @@ body {
 
 #main {
     /* justify-content: center; */
+    min-height: 100vh;
     margin: auto;
     padding: 15px;
     padding-left: clamp(10%, 15%, 20%); /* Dynamically adjusts padding */

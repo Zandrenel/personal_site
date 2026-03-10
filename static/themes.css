@@ -1,14 +1,14 @@
 :root {
     --base1: #000000;
-    --base2: #FF2DD1;
-    --base3: #9929EA;
-    --base4: #FAEB92;
-    --base5: #FF5FCF;
-    --base6: #ffffff;
+    --base2: #298700;
+    --base3: #FFFFFF;
+    --base4: #298700;
+    --base5: #D9144F;
+    --base6: #FFFFFF;
     --base7: #0046FF;
     --base8: #63C8FF;
-    --nav1:  #000000; /* Navbar */
-    --nav2:  #63C8FF; /* Hover nav text */
+    --nav1:  #298700; /* Navbar */
+    --nav2:  #D9144F; /* Hover nav text */
     --res1:  #9929EA; /* Search Result  */
     --res2:  #B6F500; /* Search Result Hover */
     --font: sans-serif;

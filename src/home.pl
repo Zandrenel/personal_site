@@ -83,7 +83,7 @@ home_page(_Request) :-
 			    section([id('skills-section'),
 				     class(['skills-section'])],
 				    [
-					\language_header_blurb,
+					%% \language_header_blurb,
 					\languages
 				     %% \skills
 			    %% 	    ]),

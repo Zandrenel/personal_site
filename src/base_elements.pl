@@ -47,17 +47,17 @@ as_top_nav(Name, div(class(navitem),a([href=HREF, class=topnav], Name))) :-
 nav('Home', '/').
 nav('Gallery', '/gallery').
 nav('Projects', '/projects').
-nav('Blog', '/blog').
+%% nav('Blog', '/blog').
 nav('Hobbies', '/hobbies').
 nav('Files', '/f').
 
 % sub_nav(Parent, Name, Path).
 sub_nav('Projects','Search Engine','/projects/engine').
-sub_nav('Projects','Image Denoiser','/projects/imagedenoiser').
-sub_nav('Projects','CookBook','/projects/cookbook').
-sub_nav('Hobbies','FaB','/hobbies/fab').
-sub_nav('Hobbies','MTG','/hobbies/mtg').
-sub_nav('Hobbies','Plants','/hobbies/plants').
+%% sub_nav('Projects','Image Denoiser','/projects/imagedenoiser').
+%% sub_nav('Projects','CookBook','/projects/cookbook').
+%% sub_nav('Hobbies','FaB','/hobbies/fab').
+%% sub_nav('Hobbies','MTG','/hobbies/mtg').
+%% sub_nav('Hobbies','Plants','/hobbies/plants').
 sub_nav('Hobbies','Cooking','/hobbies/cooking').
 
 
