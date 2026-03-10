@@ -62,7 +62,7 @@ sub_nav('Projects','Search Engine','/projects/engine').
 %% sub_nav('Hobbies','MTG','/hobbies/mtg').
 %% sub_nav('Hobbies','Plants','/hobbies/plants').
 sub_nav('Hobbies','Cooking','/hobbies/cooking').
-nav('Francisation', 'Niveau 2', '/fracisation/nivieau2/trenteq').
+sub_nav('Francisation', 'Niveau 2', '/fracisation/nivieau2/trenteq').
 
 
 % -- Footer -- %

@@ -160,7 +160,8 @@ body {
 .dropdown {
     position: relative;
     display: flex;
-    background-color: inherit;    
+    background-color: inherit;
+    z-index:1000;
 }
 
 
