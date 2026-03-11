@@ -1,11 +1,11 @@
 
-:- module(n2trenteq,
+:- module(meteo,
 	  [
-	      n2trenteq/1
+	      meteo/1
 	  ]).
 
 
-n2trenteq(_Request) :-
+meteo(_Request) :-
     reply_html_page(
 	[title('Défi 30 Questions - Francisation Niveau 2')],
 	[\html_requires(static('styles.css')),
@@ -19,10 +19,8 @@ n2trenteq(_Request) :-
 	]).
 
 
-
 javascriptBlock -->
     html([
-		
 		\js_script({|javascript(_)||
 			     // Configuration des questions
 			     // Note: Pour les adjectifs, on accepte souvent l'index 0 (Il fait) et 1 (C'est)

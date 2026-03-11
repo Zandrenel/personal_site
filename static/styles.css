@@ -148,7 +148,6 @@ body {
 
 /* every top level link in the topnav */
 .topnav {
-
     display: inline-block;
     padding: 16px;
     text-decoration: none;

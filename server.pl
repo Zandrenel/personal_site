@@ -36,7 +36,9 @@
 :- use_module(src/hobbies/mtg/mtg).
 :- use_module(src/hobbies/cooking/cooking).
 :- use_module(src/hobbies/plants/plants).
-:- use_module(src/francisation/n2trenteq).
+:- use_module(src/francisation/francisation).
+:- use_module(src/francisation/meteo).
+:- use_module(src/francisation/erverbe).
 
 
 
@@ -108,7 +110,9 @@ get_static(Request) :-
 :- http_handler(root(hobbies/mtg), mtg, [prefix]).
 :- http_handler(root(hobbies/cooking), cooking, [prefix]).
 :- http_handler(root(hobbies/plants), plants, [prefix]).
-:- http_handler(root(fracisation/nivieau2/trenteq), n2trenteq, [prefix]).
+:- http_handler(root(francisation), francisation, [prefix]).
+:- http_handler(root(francisation/meteo), meteo, [prefix]).
+:- http_handler(root(francisation/erverbe), erverbe, [prefix]).
 
 
 % REST API Routes

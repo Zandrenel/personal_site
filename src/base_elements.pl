@@ -47,7 +47,7 @@ as_top_nav(Name, div(class(navitem),a([href=HREF, class=topnav], Name))) :-
 nav('Home', '/').
 nav('Gallery', '/gallery').
 nav('Projects', '/projects').
-nav('Francisation', '/fracisation/nivieau2/trenteq').
+nav('Francisation', '/francisation').
 %% nav('Blog', '/blog').
 nav('Hobbies', '/hobbies').
 nav('Files', '/f').
@@ -62,7 +62,8 @@ sub_nav('Projects','Search Engine','/projects/engine').
 %% sub_nav('Hobbies','MTG','/hobbies/mtg').
 %% sub_nav('Hobbies','Plants','/hobbies/plants').
 sub_nav('Hobbies','Cooking','/hobbies/cooking').
-sub_nav('Francisation', 'Niveau 2', '/fracisation/nivieau2/trenteq').
+sub_nav('Francisation', 'Meteo', '/francisation/meteo').
+sub_nav('Francisation', 'ER Verbes', '/francisation/erverbe').
 
 
 % -- Footer -- %
