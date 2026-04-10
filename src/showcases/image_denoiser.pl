@@ -6,7 +6,7 @@
 :- use_module(src/base_elements).
 
 serveradress(imageServer, 'http://localhost:5000').
-serveradress(this, 'http://localhost:443').
+serveradress(this, 'https://alexanderdelaurentiis.com').
 %% serveradress(this, 'http://localhost:3030').
 
 
