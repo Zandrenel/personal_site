@@ -18,6 +18,8 @@
 :- use_module(library(http/http_header)).
 :- use_module(library(http/http_client)).
 
+%% :- use_module(library(plweb_proxy)).
+
 :- use_module(library(settings)).
 
 :- use_module(library(http/http_ssl_plugin)).
@@ -118,6 +120,8 @@ get_static(Request) :-
 % REST API Routes
 :- http_handler(root(login), login, [prefix]). % POST
 :- http_handler(root(logout), logout, [prefix]). % GET
+:- http_handler(root(cv2/canny), processImage, [prefix]). % POST
+:- http_handler(root(gaussian), processImage, [prefix]). % POST
 
 % FIle Serving Locations
 :- http_handler(files(.), serve_files, [prefix]).

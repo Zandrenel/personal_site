@@ -1,7 +1,8 @@
 :- module(base_elements,[
 	      nav_bar/2,
 	      footer/2,
-	      in_construction/2]).
+	      in_construction/2,
+	      js_snackbar/2]).
 :- use_module(color).
 :- use_module(auth).
 % ---------Navigation Bar---------
@@ -56,7 +57,7 @@ nav('Files', '/f').
 
 % sub_nav(Parent, Name, Path).
 sub_nav('Projects','Search Engine','/projects/engine').
-%% sub_nav('Projects','Image Denoiser','/projects/imagedenoiser').
+sub_nav('Projects','Image Denoiser','/projects/imagedenoiser').
 %% sub_nav('Projects','CookBook','/projects/cookbook').
 %% sub_nav('Hobbies','FaB','/hobbies/fab').
 %% sub_nav('Hobbies','MTG','/hobbies/mtg').
@@ -98,3 +99,28 @@ link(github, 'Github','https://github.com/Zandrenel').
 link(linkedin, 'Linkedin','https://www.linkedin.com/in/alexander-de-laurentiis-a4b826162/').
 
 
+js_snackbar -->
+    html([
+		\js_script({|javascript(_)||
+			     function openSnackbar(text) {
+				 
+				 const snackbar = document.createElement('div');		  
+							   const content = text;
+							   
+							   snackbar.classList.add('snackbar-alert');
+									      snackbar.innerHTML = content;
+										       const main = document.getElementById("content");
+		    											     
+
+													     // create the actual div in the DOM
+														document.body.insertBefore(snackbar, main);
+
+															      setTimeout(
+																  () => {
+																      snackbar.remove()
+																  },
+																  5000)
+															      
+			     }
+			    |})
+	    ]).

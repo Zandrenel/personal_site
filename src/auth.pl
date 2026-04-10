@@ -52,19 +52,19 @@ login_dialog -->
       \js_script({|javascript(_)||
 		  async function login(){
 
-		    const reqHeaders = new Headers();
-
+		      const reqHeaders = new Headers();
+		    
 		    const username = document.getElementById('username').value
 		    const password = document.getElementById('password').value
 
-		    const options = {
+									 const options = {									     
 		      headers: reqHeaders,
 		      method: "POST",
                       body: JSON.stringify({ username: username, password: password })	
 		    };
 		    
 		    // Pass init as an "options" object with our headers.
-		    const req = new Request("/login", options);
+		    const req = new Request("/login", options); 
 
 		    try {
 		      const response = await fetch(req);

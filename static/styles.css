@@ -179,7 +179,6 @@ body {
     text-align:left;
     display:block;
     text-decoration:none;
-
 }
 
 .dropdown:hover  .dropdown-content {
@@ -359,9 +358,7 @@ body {
 
 #main {
     /* justify-content: center; */
-    width:100%;
     min-height: 100vh;
-    margin: auto;
     padding: 15px;
     padding-left: clamp(10%, 15%, 20%); /* Dynamically adjusts padding */
     padding-right: clamp(10%, 15%, 20%); /* Dynamically adjusts padding */
@@ -610,3 +607,42 @@ body {
     text-align: left;    
 }
 
+/* Image Processor Project */
+
+#image_upload_container {
+    display: flex;
+    padding:10px;
+    height:60vh;
+}
+
+#image_input_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30vw;
+    height: 60vh;
+    background-color: #999999;
+    margin: 25px;
+}
+
+#image_button_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#image_output_container {
+    width: 30vw;
+    height: 60vh;
+    background-color: #999999;
+    margin: 25px;
+}
+
+#image_display {    
+    height: 60vh;
+    border:none;
+}
+
+#process_button {
+    height: 30px;    
+}
