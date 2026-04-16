@@ -152,4 +152,27 @@ recipe('Beef and Spinach',
 	   'Serve over white rice.'
        ]).
 
+recipe('Pirozki Dough',
+       'Alexander De Laurentiis',
+       ['Experiment', meat, rice, russian],
+       6,
+       [ingredient('warm milk' ,cups('1.5')),
+	ingredient('water',cups('1/2')),
+	ingredient('yeast',tablespoon(1)),
+	ingredient('egg',1),
+	ingredient('melted butter', cups(1)),
+	ingredient('flour',cups(4)),
+	ingredient('oil',tablespoons('2-4')),
+	ingredient('egg wash','some')       
+       ],
+       [
+	   'Mix warm milk, warm water, yeast, butter, and egg',
+	   'Let yeast activate a few minutes',
+	   'Add in flour, knead until incorporated',
+	   'Let rest an hour',
+	   'Fill with stuffing, make the shapes, add to baking sheet',
+	   'Brush with egg wash',
+	   'Bake'
+       ]).
+
 
