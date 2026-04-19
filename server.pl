@@ -41,6 +41,7 @@
 :- use_module(src/francisation/francisation).
 :- use_module(src/francisation/meteo).
 :- use_module(src/francisation/erverbe).
+:- use_module(src/error_page).
 
 
 
@@ -115,6 +116,7 @@ get_static(Request) :-
 :- http_handler(root(francisation), francisation, [prefix]).
 :- http_handler(root(francisation/meteo), meteo, [prefix]).
 :- http_handler(root(francisation/erverbe), erverbe, [prefix]).
+:- http_handler(/, error_page, [prefix]).
 
 
 % REST API Routes
