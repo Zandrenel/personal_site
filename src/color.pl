@@ -4,6 +4,7 @@
 	      ]).
 
 colors('','Default').
+colors('Mechropotent','Mechropotent').
 colors('noName','No Name').
 colors('ArtsAndCrafts','Arts and Crafts').
 colors('MeltedIceCream','Melted Ice Cream').

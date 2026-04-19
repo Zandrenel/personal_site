@@ -30,6 +30,27 @@
     --font-family: "SFBMono-Regular", Consolas, monospace;
 }
 
+[data-theme="Mechropotent"] {
+    --ink: #000000;
+    --muted: #e5336f;	
+    --paper: #15142a;
+    --soft: #7a38c7;
+    --header-bg: rgb(82, 21, 220, 0.7);
+    --card: #363e4e;
+    --card-soft: #67bed9;
+    
+    --brand: #d01e2d;
+    --brand-soft: #0B1F65;
+
+    --mint: #0B1F65;
+    --blue: #67bed9;
+    --rose: #cf1e2c;
+    --gold: #C08D2C;
+
+    --line: #e4326f;
+    --body-background: radial-gradient(circle at top left, rgba(151, 216, 178, .34), transparent 30rem), radial-gradient(circle at 86% 18%, rgba(111, 183, 200, .2), transparent 24rem), var(--paper);
+}
+
 [data-theme="ArtsAndCrafts"] {
     --ink: #000000;
     --paper: #FFD743;
