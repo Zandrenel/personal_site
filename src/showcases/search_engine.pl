@@ -1,6 +1,5 @@
 :- module(search_engine,[engine/1]).
 
-
 :- use_module(src/base_elements).
 :- use_module(library(http/http_client)).
 :- use_module(library(http/http_error)).
@@ -43,7 +42,7 @@ engine(_Request) :-
 	    \html_requires(static('styles.css')),
 	    \html_requires(static('themes.css')),
 	    \nav_bar,
-	    div(id(main),
+	    div([id("engine-main")],
 		[
 		    \description,
 		    \query_form
@@ -54,20 +53,20 @@ engine(_Request) :-
 
 
 description -->
-    html([
-		h3('Search Engine'),
-		p('This project was done as a project for an information and data retrieval course at Concordia University. Here are some qualities and specifications it has.'),
-		ul([
-			  li('Crawler and Query processor engine built in Python'),
-			  li('Index is of first 10,000 pages from https://concordia.ca'),
-			  li('Returns first 15 most relevant results after scoring'),
-			  li('Uses the BM25 ranking algorithm'),
-			  li('Crawler uses SPIMI to construct the inverted index'),
-			  li('Records frequency of word per doc along with doc ID in the index'),
-			  li('Crawler built from scratch using requests and urlparse libraries'),
-			  li(a([href="https://github.com/Zandrenel/Comp_479_crawler_queryProcessor"],"The Code"))
-		      ])
-	    ]).
+  html([ 
+	  h3('Search Engine'),
+	  p('This project was done as a project for an information and data retrieval course at Concordia University. Here are some qualities and specifications it has.'),
+	  ul([
+		li('Crawler and Query processor engine built in Python'),
+		li('Index is of first 10,000 pages from https://concordia.ca'),
+		li('Returns first 15 most relevant results after scoring'),
+		li('Uses the BM25 ranking algorithm'),
+		li('Crawler uses SPIMI to construct the inverted index'),
+		li('Records frequency of word per doc along with doc ID in the index'),
+		li('Crawler built from scratch using requests and urlparse libraries'),
+		li(a([href="https://github.com/Zandrenel/Comp_479_crawler_queryProcessor"],"The Code"))
+	      ])		
+	]).
 
 query_form --> 
     html(

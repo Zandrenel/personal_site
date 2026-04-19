@@ -1,168 +1,361 @@
 :root {
-    --base1: #000000;
-    --base2: #298700;
-    --base3: #FFFFFF;
-    --base4: #298700;
-    --base5: #D9144F;
-    --base6: #FFFFFF;
-    --base7: #0046FF;
-    --base8: #63C8FF;
-    --nav1:  #298700; /* Navbar */
-    --nav2:  #D9144F; /* Hover nav text */
-    --res1:  #9929EA; /* Search Result  */
-    --res2:  #B6F500; /* Search Result Hover */
+
     --font: sans-serif;
+
+    --ink: #202423;
+    --muted: #66706c;
+    --paper: #fbfaf5;
+    --soft: #eef5ef;
+    --header-bg: rgba(251, 250, 245, 0.9);
+    --card: #ffffff;
+    --card-soft: rgba(255, 255, 255, 0.9);
+    --mint: #97d8b2;
+    --blue: #6fb7c8;
+    --rose: #d9969b;
+    --gold: #d2ae55;
+    --brand: #2f7a53;
+    --brand-soft: #b9d9c2;
+    --note-bg: #fff6d6;
+    --note-line: #e7d9af;
+    --note-text: #5d5435;
+    --shadow: rgba(32, 36, 35, .14);
+    --line: #dce5dd;
+
+    --body-background: radial-gradient(circle at top left, rgba(151, 216, 178, .34), transparent 30rem), radial-gradient(circle at 86% 18%, rgba(111, 183, 200, .2), transparent 24rem), var(--paper);
+
+    --max: 1120px;
+    --font-size: 16px;
+    --line-height: 1.65;
+    --nav-backdrop: blur(16px);
+    --font-family: "SFBMono-Regular", Consolas, monospace;
 }
 
-[data-theme="ArtsAndCrafts"] { 
-    --base1: #000000; /* Default background */
-    --base2: #A06AB4; /* */
-    --base3: #FFD743; /* Header/Footer Text hover-nav-color*/
-    --nav1:  #E56997; /* Navbar */
-    --nav2:  #ffffff; /* Hover nav text */
-    --res1:  #8D538D; /* Search Result  */
-    --res2:  #8D538D; /* Search Result Hover */
+[data-theme="ArtsAndCrafts"] {
+    --ink: #000000;
+    --paper: #FFD743;
+    --soft: #A06AB4;
+    --card: #ffffff;
+
+    --brand: #E56997;
+    --brand-soft: #8D538D;
+
+    --mint: #A06AB4;
+    --blue: #E56997;
+    --rose: #8D538D;
+    --gold: #FFD743;
+
+    --muted: #8D538D;
 }
 
 [data-theme="MeltedIceCream"] {
-    --base1: #000000; /* default Text Color */
-    --base2: #5BB0BA; /* Footer and Background */
-    --base3: #F6C8CC; /* Body  & Footer Text &  hover-nav-color */
-    --nav1:  #C15B78; /* Navbar */
-    --nav2:  #EBF5F7; /* Hover nav text */
-    --res1:  #8D538D; /* Search Result  */
-    --res2:  #C15B78; /* Search Result Hover */
+    --ink: #000000;
+    --paper: #F6C8CC;
+    --soft: #5BB0BA;
+    --card: #EBF5F7;
+
+    --brand: #C15B78;
+    --brand-soft: #8D538D;
+
+    --mint: #5BB0BA;
+    --blue: #5BB0BA;
+    --rose: #C15B78;
+    --gold: #F6C8CC;
+
+    --muted: #8D538D;
 }
 
 [data-theme="MidnightSwim"] {
-        --base1: #000000; /* default Text Color */
-    --base2: #08153A; /* Footer and Background */
-    --base3: #C08D2C; /* Body  & Footer Text &  hover-nav-color */
-    --nav1:  #0B1F65; /* Navbar */
-    --nav2:  #E3B668; /* Hover nav text */
-    --nav3:  #FFE0AE; /* Navbar Text */
-    --res1:  #8D538D; /* Search Result  */
-    --res2:  #C15B78; /* Search Result Hover */
+    --ink: #000000;
+    --paper: #08153A;
+    --soft: #0B1F65;
+    --card: #08153A;
+
+    --brand: #0B1F65;
+    --brand-soft: #E3B668;
+
+    --mint: #0B1F65;
+    --blue: #0B1F65;
+    --rose: #C15B78;
+    --gold: #C08D2C;
+
+    --muted: #E3B668;
 }
 
 [data-theme="PowerUp"] {
-        --base1: #000000; /* Default background */
-    --base2: #900020; /* */
-    --base3: #e9ddd4; /* Header/Footer Text hover-nav-color*/
-    --base4: #e9ddd4; /* Background Main */
-    --nav1:  #AE002B; /* Navbar */
-    --nav2:  #ffffff; /* Hover nav text */
-    --res1:  #AE623A; /* Search Result  */
-    --res2:  #C57951; /* Search Result Hover */
+    --ink: #000000;
+    --paper: #e9ddd4;
+    --soft: #900020;
+    --card: #e9ddd4;
+
+    --brand: #AE002B;
+    --brand-soft: #C57951;
+
+    --mint: #900020;
+    --blue: #AE002B;
+    --rose: #C57951;
+    --gold: #AE623A;
+
+    --muted: #AE623A;
 }
 
 [data-theme="SunKissedRock"] {
-        --base1: #000000; /* default Text Color */
-    --base2: #FFE0AE; /* Footer and Background */
-    --base3: #A2ABCE; /* Body  & Footer Text &  hover-nav-color */
-    --nav1:  #F5631A; /* Navbar */
-    --nav2:  #FFA303; /* Hover nav text */
-    --nav3:  #FFE0AE; /* Navbar Text */
-    --res1:  #8D538D; /* Search Result  */
-    --res2:  #C15B78; /* Search Result Hover */
+    --ink: #000000;
+    --paper: #FFE0AE;
+    --soft: #A2ABCE;
+    --card: #FFE0AE;
+
+    --brand: #F5631A;
+    --brand-soft: #FFA303;
+
+    --mint: #A2ABCE;
+    --blue: #A2ABCE;
+    --rose: #C15B78;
+    --gold: #FFA303;
+
+    --muted: #8D538D;
 }
 
 [data-theme="twilightStreet"] {
-    --base1: #000000; /* Default background */
-    --base2: #96A2ED; /* */
-    --base3: #EBF5F7; /* Header/Footer Text hover-nav-color*/
-    --nav1:  #0C1446; /* Navbar */
-    --nav2:  #C98568; /* Hover nav text */
-    --res1:  #8D538D; /* Search Result  */
-    --res2:  #8D538D; /* Search Result Hover */
-}
+    --ink: #000000;
+    --paper: #EBF5F7;
+    --soft: #96A2ED;
+    --card: #EBF5F7;
 
+    --brand: #0C1446;
+    --brand-soft: #C98568;
+
+    --mint: #96A2ED;
+    --blue: #96A2ED;
+    --rose: #C98568;
+    --gold: #EBF5F7;
+
+    --muted: #8D538D;
+}
 [data-theme="noName"] {
-    --base1: rgb(18, 18, 18); /* Default background */
-    --base2: rgb(18, 18, 18); /* */
-    --base3: rgb(251, 222, 0); /* Header/Footer Text hover-nav-color*/
-    --nav1:  rgb(18, 18, 18); /* Navbar */
-    --nav2:  rgb(160, 264, 0); /* Hover nav text */
-    --res1:  rgb(251, 222, 0); /* Search Result  */
-    --res2:  rgb(251, 222, 0); /* Search Result Hover */
+    --ink: rgb(251, 222, 0);
+    --paper: rgb(18, 18, 18);
+    --soft: rgb(18, 18, 18);
+    --card: rgb(18, 18, 18);
+
+    --brand: rgb(251, 222, 0);
+    --brand-soft: rgb(160, 264, 0);
+
+    --mint: rgb(18, 18, 18);
+    --blue: rgb(18, 18, 18);
+    --rose: rgb(251, 222, 0);
+    --gold: rgb(251, 222, 0);
+
+    --muted: rgb(251, 222, 0);
 }
 
 body {
-    background-color: var(--base2);
+    background: var(--body-background);
     font-family: var(--font);
+    font-size: var(--font-size);
+    line-height: var(--line-height);
 }
 
 #footer {
-    background-color: var(--base2);
-    color: var(--base3);
+    border-top: 1px solid var(--line);
+    background: var(--paper);
 }
 
-#footer a {
-    color:var(--base3);	  
+.footlink {
+    color: var(--muted);
+    font-family: var(--font-family);
+}
+
+.footlink:hover {
+    color: var(--ink);
+    border-color: var(--brand-soft);    
 }
 
 /* Text bodies that will apply to base level pages */
 
-
-#main {
-
-    color: var(--base1);
-    background-color: var(--base3);
+.home-section .skill-section {
+    border-top: 1px solid var(--line);
+    background: rgba(255, 255, 255, .34);
 }
 
-.home-nav {
-    background-color:var(--base2);
-    color: var(--base3);
+.home-section:nth-of-type(even), .skill-section {    
+    background: var(--soft);
+}
+
+.sub-title-life {
+    color: var(--brand);
+    font-family: var(--font-family);
+}
+
+.sub-title-life::before {
+    box-shadow: 0 -16px 0 var(--mint), 16px -16px 0 var(--blue), 32px -16px 0 var(--rose);
+}
+
+.intro {
+    color: var(--muted);
+}
+
+.photo-panel {
+    border: 1px solid var(--line);
+    box-shadow: 0 22px 5-px var(--shadow);
+}
+
+
+.stack-orbit {
+    position: absolute;
+    right: 18px;
+    top: 0;
+    width:168px;
+    height: 168px;
+    border: 1px solid var(--brand-soft);
+    border-radius: 50%;
+    animation: turn 34s linear infinite;
+}
+
+.stack-orbit img {
+    border: 1px solid var(--line);
+    background: var(--card);
+}
+
+.note {
+    border: 1px solid var(--note-line);
+    background: var(--note-bg);
+    box-shadow: 0 18px 40px var(--shadow);
+}
+
+.note p {
+    color: var(--note-line);
+    font-family: car(--font-family);
+}
+
+
+.card {
+    border: 1px solid var(--line);
+    background: var(--card);
+}
+
+.card p {
+    color: var(--muted);
+}
+
+.spark {
+    background: var(--mint);
+}
+
+.card:nth-child(2) .spark {
+    background: var(--blue);
+}
+
+.card:nth-child(3) .spark {
+    background: var(--rose);
+}
+
+.card:nth-child(4) .spark {
+    background: var(--gold);
+}
+
+.tool {
+    border: 1px solid var(--line);
+    background: var(--card-bg);
+    color: var(--muted);
+    font-family: var(--font-family);
+}
+
+.section-label {
+    color: var(--brand);
+    font-family: var(--font-family);
+}
+
+.home-nav, #back-to-top {
+    border: 1px solid var(--line);
+    background: var(--card-soft);
+    color: var(--muted);
+    font-family: var(--font-family);
+}
+
+.home-nav:hover {
+    border-color: var(--brand-soft);
+    color: var(--ink);
+}
+
+.stack-orbit {
+    border: 1px solid var(--brand-soft);
 }
 
 #dialog-body{
-    background-color:var(--base2);
+    background-color:var(--card);
 }
 
-/* The UL around the list */
-#navigationbar {
-    background-color: var(--nav1);
+#dialog-container {
+    background-color:rgba(244, 244, 244, 0.5);
 }
+
+#top_nav_bar{
+    border-bottom: 1px solid var(--line);
+    background: var(--header-bg);
+    backdrop-filter: var(--nav-backdrop);
+}
+    
+/* The UL around the list */
 
 /* every top level link in the topnav */
 .topnav {
-    color: var(--base3);
+    color: var(--muted);
 }
 
-#navigationbar a:hover {
-    background-color: var(--base2);
-    color: var(--nav2);
+.topnav:hover, .dropdown:hover .topnav {
+    border-color: var(--line);
+    background: var(--card);
+    color: var(--ink);
+    box-shadow: 0 8px 18px rgba(32, 36, 35, .06);    
 }
-
 
 .dropdown-content {
-    background-color: var(--base2);
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border: 1px solid var(--line);
+    background: var(--card);
+    box-shadow: 0 18px 40px var(--shadow);
 }
 
-.dropdown-content a{
-    color: var(--base3);
+/* Theme Selector */
+#themeSelector > div, #login-button, .footlink {
+    border: 1px solid var(--line);
+    background: var(--card);
 }
 
-.dropdown-content a:hover {
-    background-color: var(--nav2);
+#themeSelector > div::before {
+    content: "theme";
+    color: var(--muted);
+    font-family: var(--font-family);
 }
+
+#theme {
+    color: var(--ink);
+}
+
+.subnav {
+    color: var(--muted);
+}
+
+.subnav:hover {
+    background: var(--soft);
+    color: var(--ink);
+} 
 
 /* Snackbar styling */
 
 .snackbar-alert {    
-    background-color: var(--base2);
+    background-color: var(--brand);
 }
 
 /* Login Styling */
 
 
 #login-button {
-    background: var(--res1);
+    background: var(--brand);
+    color: var(--card);
 }
 
 #login-button:hover {
-    background: var(--res2);
+    background: var(--brand-soft);
 }
 
 /* Gallery page specific styling */
@@ -174,11 +367,57 @@ body {
 /* Engine page specific styling */
 
 .result {
-    background-color:var(--base3);
-    color:var(--base1);
+    background-color:var(--brand);
+    color:var(--ink);
 }
 
 .result:hover {
-    background-color:var(--base8);
-    color:var(--base1);
+    background-color:var(--brand-soft);
+    color:var(--muted);
+}
+
+
+/*---- Engine page specific styling ----*/
+
+.result {
+    color: var(--brand);
+}
+
+.result:hover {
+    color: var(--brand);
+}
+
+/*---- COOKING PAGE CSS ----*/
+.recipe_card {
+    background-color: var(--brand);
+    color: var(--ink);
+}
+
+.tag {
+    background-color: var(--gold);
+    color: var(--ink);
+}
+
+.recipe_card_header {
+    background-color: var(--brand-soft);
+}
+
+
+.recipe_card_ingredients {
+    background-color: var(--brand-soft);
+}
+
+
+.recipe_card_directions {
+    background-color: var(--brand-soft);
+}
+
+/* Image Processor Project */
+
+#image_input_container {
+    background-color: var(--note-bg);
+}
+
+#image_output_container {
+    background-color: var(--note-bg);
 }

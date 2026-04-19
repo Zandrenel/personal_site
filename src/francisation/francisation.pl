@@ -13,7 +13,7 @@ francisation(_Request) :-
 	 \nav_bar,
 	 div(id(content),
 	     [
-		 div(id(main),[
+		 div(id("francisation-main"),[
 		 \description,
 		 \table_of_contents
 		 ])

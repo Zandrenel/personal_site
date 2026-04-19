@@ -17,7 +17,7 @@ nlmeans(_Request) :-
 	    \html_requires(static('styles.css')),
 	    \html_requires(static('themes.css')),
 	    \nav_bar,
-	    div(id(main),
+	    div(id("image-main"),
 		[
 		    \js_snackbar,
 		    \js_get_image,

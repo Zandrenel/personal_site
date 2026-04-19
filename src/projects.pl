@@ -14,7 +14,7 @@ projects(_Request) :-
 	[\html_requires(static('styles.css')),
 	 \html_requires(static('themes.css')),
 	 \nav_bar,
-	 div(id(main),
+	 div(id("projects-main"),
 	     [\placeholder]
 	    ),
 	 \footer

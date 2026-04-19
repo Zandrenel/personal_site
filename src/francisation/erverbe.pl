@@ -6,19 +6,21 @@
 
 
 erverbe(_Request) :-
-    reply_html_page(
-	[title('Défi 30 Questions - Francisation Niveau 2')],
-	[\html_requires(static('styles.css')),
-	 \html_requires(static('themes.css')),
-	 \nav_bar,
+  reply_html_page(
+    [title('Défi 30 Questions - Francisation Niveau 2')],
+    [\html_requires(static('styles.css')),
+     \html_requires(static('themes.css')),
+     \nav_bar,
+     div(id(content),
 	 div(id(main),
 	     [
-		 \htmlBlock,
-		 \javascriptBlock
+	       \htmlBlock,
+	       \javascriptBlock
 	     ]
-	    ),
-	 \footer
-	]).
+	    )
+	),	 
+     \footer
+    ]).
 
 
 
@@ -126,7 +128,7 @@ htmlBlock -->
               .feedback { display: none; margin-top: 0.5rem; font-size: 0.875rem; }
 	       </style>
 
-	       <body class="">
+
 	       <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-xl overflow-hidden">
                <header class="bg-blue-600 p-6 text-white text-center">
                <h1 class="text-2xl font-bold uppercase tracking-wide">Ma routine au présent</h1>
