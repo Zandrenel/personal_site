@@ -367,7 +367,7 @@ body {
 /* Engine page specific styling */
 
 .result {
-    background-color:var(--brand);
+    background-color:var(--paper);
     color:var(--ink);
 }
 
