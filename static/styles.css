@@ -170,7 +170,6 @@ h2, .home-section-header p {
     text-decoration: none;
 }
 
-
 /* ---- Life Section ---- */
 #elevator-section, .section-inner {
     width: min(100% - 32px, var(--max));
@@ -183,9 +182,18 @@ h2, .home-section-header p {
 #elevator-section {
     min-height: calc(100svh - 72px);
     padding: 70px 0 54px;
-    grid-template-columns: minmax(0px, 1.04fr) minmax(330px, .96fr);
     gap: 48px;
     align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.elevator-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.35); /* light veil */
+  pointer-events: none;
 }
 
 #intro_prolog_answer {

@@ -1,33 +1,51 @@
 :root {
-
     --font: sans-serif;
 
-    --ink: #202423;
-    --muted: #66706c;
-    --paper: #fbfaf5;
-    --soft: #eef5ef;
-    --header-bg: rgba(251, 250, 245, 0.9);
-    --card: #ffffff;
-    --card-soft: rgba(255, 255, 255, 0.9);
-    --mint: #97d8b2;
-    --blue: #6fb7c8;
-    --rose: #d9969b;
-    --gold: #d2ae55;
-    --brand: #2f7a53;
-    --brand-soft: #b9d9c2;
-    --note-bg: #fff6d6;
-    --note-line: #e7d9af;
-    --note-text: #5d5435;
-    --shadow: rgba(32, 36, 35, .14);
-    --line: #dce5dd;
+    --ink: #1d1d1f;
+    --muted: #6e6e73;
+    --paper: #f7f8fb;
+    --soft: #f1f5f9;
 
-    --body-background: radial-gradient(circle at top left, rgba(151, 216, 178, .34), transparent 30rem), radial-gradient(circle at 86% 18%, rgba(111, 183, 200, .2), transparent 24rem), var(--paper);
+    --header-bg: rgba(247, 248, 251, 0.72);
+    --card: rgba(255, 255, 255, 0.82);
+    --card-soft: rgba(255, 255, 255, 0.62);
 
+    --mint: #b8ead2;
+    --blue: #9bd8ff;
+    --rose: #ffd1dc;
+    --gold: #f6d88f;
+
+    --brand: #007aff;
+    --brand-soft: #d8ecff;
+
+    --note-bg: #fff8df;
+    --note-line: #f0d98c;
+    --note-text: #6b5a24;
+
+    --shadow: rgba(29, 29, 31, 0.08);
+    --line: rgba(29, 29, 31, 0.1);
+
+     --body-background:
+    radial-gradient(circle at 16% 12%, rgba(0, 92, 255, 0.45) 0, rgba(0, 92, 255, 0.25) 18rem, transparent 36rem),
+    radial-gradient(circle at 72% 20%, rgba(255, 118, 226, 0.40) 0, rgba(196, 80, 255, 0.22) 22rem, transparent 42rem),
+    radial-gradient(circle at 72% 78%, rgba(82, 56, 255, 0.45) 0, rgba(82, 56, 255, 0.25) 22rem, transparent 46rem),
+    radial-gradient(circle at 4% 96%, rgba(0, 25, 150, 0.40) 0, rgba(0, 45, 200, 0.20) 24rem, transparent 42rem),
+    linear-gradient(115deg, #f5f7ff 0%, #eef2ff 40%, #f8f3ff 70%, #fff5fa 100%);
+     
     --max: 1120px;
     --font-size: 16px;
     --line-height: 1.65;
-    --nav-backdrop: blur(16px);
-    --font-family: "SFBMono-Regular", Consolas, monospace;
+    --nav-backdrop: blur(24px) saturate(180%);
+
+    --font-family:
+	-apple-system,
+	BlinkMacSystemFont,
+	"SF Pro Text",
+	"Segoe UI",
+	Roboto,
+	Helvetica,
+	Arial,
+	sans-serif;
 }
 
 [data-theme="Mechropotent"] {
@@ -327,7 +345,7 @@ body {
     border-color: var(--line);
     background: var(--card);
     color: var(--ink);
-    box-shadow: 0 8px 18px rgba(32, 36, 35, .06);    
+    box-shadow: 0 8px 18px rgba(32, 36, 35, .06);
 }
 
 .dropdown-content {

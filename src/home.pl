@@ -54,8 +54,7 @@ home_page(_Request) :-
 		]),
 	    div(id(main),
 		[
-		  section([id('elevator-section'),
-			   class(['home-section'])],
+		  section([id('elevator-section')],
 			  [				
 			    \life_blurb
 			  ]),
@@ -75,19 +74,7 @@ life_blurb --> html([
 			     h1(id(intro_prolog_query),"?- my_name(Alek)."),
 			     p(id(intro_prolog_answer),"true."),
 			     p([class(["intro"])],["Hello, my name is Alek and I'm a full stack developer. I've studied computer science at Concordia University in Montreal where I had a lot of molding experiences for myself as a developer, including the one that caused this site to be written in Prolog. I believe that technology should be accessible and not be there to worsen the life of those of us who truly exist. That said this website is organically grown. We as humans have intent when we make an action, this intent can make something meaningful or meaningless, and this ability is something priceless."])
-			   ]),
-		       div([
-			      div([class(["portrait-board"])],[					      
-				    div([class(["photo-panel"])],[img([src("/s/gallery/fullsize/playfish.jpg")])]),
-				    div([class(["stack-orbit"])],[
-					  img([src("/s/logos/Prolog.png")]),
-					  img([src("/s/logos/Python.svg")]),
-					  img([src("/s/logos/JS.svg")]),
-					  img([src("/s/logos/Java.svg")])
-					]),
-				    aside([class(["note"])],[p("A small cat and a fish")])
-				  ])
-			    ])				  
+			   ])		      
 		     ]).
 
 life --> html([
